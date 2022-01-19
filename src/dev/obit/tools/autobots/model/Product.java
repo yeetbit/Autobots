@@ -14,17 +14,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.controller;
-
-import dev.obit.tools.view.ViewFactory;
+package dev.obit.tools.autobots.model;
 
 /**
  *
  * @author obi
  */
-public abstract class BaseController {
+public class Product {
     
-    protected ViewFactory viewFactory;
+    String name;
+    int qty;
+
     
+    public String getName() {
+            return name;
+    }
+
+    public void setName(String name) {
+            this.name = name;
+    }
+
+    public int getQty() {
+            return qty;
+    }
+
+    public void setQty(int qty) {
+            this.qty = qty;
+    }
+
+    @Override
+    public String toString() {
+            return "Product [name=" + name + ", qty=" + qty + "]";
+    }
     
 }

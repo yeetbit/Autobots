@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.view;
+package dev.obit.tools.autobots.view;
 
 import java.io.IOException;
 import java.util.ArrayList;

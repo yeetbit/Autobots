@@ -14,37 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.model;
+package dev.obit.tools.autobots.model;
+
+import java.io.Serializable;
 
 /**
  *
  * @author obi
  */
-public class Product {
+public class OnlineAccount implements Serializable {
     
-    String name;
-    int qty;
+    private final String userName;
+    private final String passWord;
 
+    public OnlineAccount(String userName, String passWord) {
+        this.userName = userName;
+        this.passWord = passWord;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
     
-    public String getName() {
-            return name;
-    }
-
-    public void setName(String name) {
-            this.name = name;
-    }
-
-    public int getQty() {
-            return qty;
-    }
-
-    public void setQty(int qty) {
-            this.qty = qty;
-    }
-
-    @Override
-    public String toString() {
-            return "Product [name=" + name + ", qty=" + qty + "]";
-    }
+    
     
 }

@@ -14,28 +14,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.model;
+
+package dev.obit.tools.autobots;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  *
  * @author obi
  */
-public enum UrlProfile {
-    
+public class Main extends Application {
+
     /**
-     * UrlProfile's are PRE-configured API profiles for different website's
+     * @param args the command line arguments
      */
-    NOTEBOOKBILLIGER;
-    
-    public String getURL(UrlProfile url){
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
         
-        switch(url){
-            case NOTEBOOKBILLIGER : 
-                return "https://www.notebooksbilliger.de/pc+hardware/grafikkarten/page/1?box_8308_2816%5B%5D=15614038&sort=price&order=asc&availability=alle";
-            default : return "https://www.notebooksbilliger.de/pc+hardware/grafikkarten/page/1?box_8308_2816%5B%5D=15614038&sort=price&order=asc&availability=alle";
-        } 
         
     }
-    
     
 }

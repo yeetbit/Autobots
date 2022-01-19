@@ -14,25 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+package dev.obit.tools.autobots.model;
 
 /**
- * FXML Controller class
  *
  * @author obi
  */
-public class EntryWindowController implements Initializable {
-
+public enum UrlProfile {
+    
     /**
-     * Initializes the controller class.
+     * UrlProfile's are PRE-configured API profiles for different website's
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    NOTEBOOKBILLIGER;
+    
+    public String getURL(UrlProfile url){
+        
+        switch(url){
+            case NOTEBOOKBILLIGER : 
+                return "https://www.notebooksbilliger.de/pc+hardware/grafikkarten/page/1?box_8308_2816%5B%5D=15614038&sort=price&order=asc&availability=alle";
+            default : return "https://www.notebooksbilliger.de/pc+hardware/grafikkarten/page/1?box_8308_2816%5B%5D=15614038&sort=price&order=asc&availability=alle";
+        } 
+        
+    }
+    
     
 }

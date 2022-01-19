@@ -15,27 +15,34 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package dev.obit.tools.view;
+package dev.obit.tools.autobots.view;
 
 /**
  *
  * @author obi
  */
-public enum ColorTheme {
-    LIGHT,
-    DEFAULT,
-    DARK;
+public enum FontSize {
     
-    public static String getCssPath(ColorTheme colorTheme){
-        switch (colorTheme){
-            case LIGHT :
-                return "style/themeLight.css";
-            case DARK :
-                return "style/themeDark.css";
-            case DEFAULT:
-                return "style/themeDefault.css";
-            default :
-                return "style/themeDefault.css";
+    XSMALL,
+    SMALL,
+    MEDIUM,
+    LARGE,
+    XLARGE;
+    
+    public static String getCssPath(FontSize fontSize){
+        switch (fontSize){
+            case XSMALL : 
+                return "style/fontXSmall.css";
+            case SMALL : 
+                return "style/fontSmall.css";
+            case MEDIUM : 
+                return "style/fontMedium.css";
+            case LARGE : 
+                return "style/fontLarge.css";
+            case XLARGE : 
+                return "style/fontXLarge.css";
+            default : return "style/fontMedium.css";
         }
     }
+    
 }
