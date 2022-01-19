@@ -16,10 +16,116 @@
  */
 package dev.obit.tools.view;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /**
  *
  * @author obi
  */
 public class ViewFactory {
     
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BLACK = "\u001B[1m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_PURPLE = "\u001B[35m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_WHITE = "\u001B[37m";
+    private ColorTheme colorTheme = ColorTheme.DEFAULT;
+    private FontSize fontSize = FontSize.MEDIUM;
+
+    private ArrayList<Stage> activeStages = new ArrayList<>();
+    private boolean mainWindowInitialized = false;
+
+    public ColorTheme getColorTheme() {
+        return colorTheme;
+    }
+
+    public FontSize getFontSize() {
+        return fontSize;
+    }
+
+    public void setColorTheme(ColorTheme colorTheme) {
+        this.colorTheme = colorTheme;
+    }
+
+    public void setFontSize(FontSize fontSize) {
+        this.fontSize = fontSize;
+    }
+    
+    public ViewFactory(EmailManager emailManager){
+        this.emailManager = emailManager;
+    }
+    
+    public void showLoginWindow(){
+        BaseController controller = new LoginWindowController(emailManager, this, "LoginWindow.fxml");
+        initStage(controller, true);
+    }
+    
+    public void showMainWindow(){
+        BaseController controller = new MainWindowController(emailManager, this, "MainWindow.fxml");
+        initStage(controller, true);
+        mainWindowInitialized = true;
+    }
+    
+    public void showPreferencesWindow(){
+        BaseController controller = new PreferencesWindowController(emailManager, this, "PreferencesWindow.fxml");
+        initStage(controller, false);
+    }
+
+    public boolean isMainWindowInitialized() {
+        return mainWindowInitialized;
+    }
+
+      
+    private void initStage(BaseController controller, Boolean hasSystemExit){
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(controller.getFXMLName()));
+        fxmlloader.setController(controller);
+        
+        try{
+            Scene scene = new Scene(fxmlloader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            if(hasSystemExit){
+                stage.setOnCloseRequest((e) -> {
+                    Platform.exit();
+                    System.exit(0);
+                });
+            }
+            activeStages.add(stage);
+            updateStyles();
+        }catch(IOException ioe){
+            System.out.println("Something went wrong during init: "+ANSI_GREEN+controller.getClass().toString()+ANSI_RESET);
+            ioe.printStackTrace();
+            return;
+        }
+    }
+    
+    public void closeStage(Stage stage){
+        stage.close();
+        activeStages.remove(stage);
+    }
+    
+    public void updateStyles(){
+        for(Stage stage : activeStages){
+            Scene scene = stage.getScene();
+            // handle CSS
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
+            scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
+        }
+        
+    }
+    
+    
+}
+
 }

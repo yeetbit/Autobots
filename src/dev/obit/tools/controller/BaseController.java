@@ -16,10 +16,15 @@
  */
 package dev.obit.tools.controller;
 
+import dev.obit.tools.view.ViewFactory;
+
 /**
  *
  * @author obi
  */
-public class BaseController {
+public abstract class BaseController {
+    
+    protected ViewFactory viewFactory;
+    
     
 }

@@ -1,0 +1,54 @@
+.root {
+    colorPrim0: #E5EDFD; 
+    colorPrim1: #FFFFFF;
+    colorPrim2: #FFFFFF;
+    colorPrim3: #BBCEF2;
+    colorPrim4: #8FA9DC;
+
+    colorCompl0: #272622;
+    colorCompl1: #817355;
+    colorCompl2: #585143;
+    colorCompl3: #40392B;
+    colorCompl4: #564829;
+
+    textColor: #262A34;
+}
+
+*{
+    -fx-background-color: colorPrim0;
+    -fx-text-fill: textColor;
+}
+
+.big{
+    -fx-font-size: 16pt;
+}
+/*
+   https://paletton.com/#uid=23J0u0k3p+500++00++7+W0cwNX
+*/
+
+Button, Label, ChoiceBox, Slider {
+    -fx-text-fill: textcolor;
+}
+
+Button {
+    -fx-background-color: colorPrim3;
+}
+Button:hover {
+    -fx-background-color: colorPrim4;
+}
+
+ChoiceBox >* {
+    -fx-background-color: colorPrim3;
+}
+
+Slider .axis {
+    -fx-tick-label-fill: colorPrim1;
+}
+
+Slider .track {
+    -fx-background-color: colorPrim2;
+}
+
+Slider .thumb {
+    -fx-background-color: colorPrim1;
+}
