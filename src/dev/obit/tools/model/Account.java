@@ -22,29 +22,55 @@ import java.io.Serializable;
  *
  * @author obi
  */
+
 public class Account implements Serializable {
     
+    /**
+     * The Account object is a representation of the user data, 
+     * In regards to privacy: Once the object is created the user can select to store it as a serialized object or a plain text file.
+     * The user will be notified with the 
+     * 
+     * personal information
+     */
     private final String name;
     private final String lastName;
     private final String emailAddress;
     private final String street;
     private final String houseNumber;
-    private final String appartment;
+    private final String suite;
     private final String zipCode;
     private final String country;
-    
+
+    /**
+     * credit card data
+     */
     private final String cardHolder;
     private final String cardNumber;
     private final String expirationDate;
     private final String cvc;
 
-    public Account(String name, String lastName, String emailAddress, String street, String houseNumber, String appartment, String zipCode, String country, String cardHolder, String cardNumber, String date, String cvc) {
+    /**
+     * 
+     * @param name          first name field of the user
+     * @param lastName      last name field of the user
+     * @param emailAddress  email address of the user
+     * @param street        street name for shipping & billing
+     * @param houseNumber   house/building number for shipping & billing
+     * @param suite         suite/apartment number for shipping & billing
+     * @param zipCode       zipCode for shipping & billing
+     * @param country       country for shipping & billing
+     * @param cardHolder    name linked credit card account
+     * @param cardNumber    credit card account number
+     * @param date          credit card expiration date 
+     * @param cvc           card verification code
+     */
+    public Account(String name, String lastName, String emailAddress, String street, String houseNumber, String suite, String zipCode, String country, String cardHolder, String cardNumber, String date, String cvc) {
         this.name = name;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.street = street;
         this.houseNumber = houseNumber;
-        this.appartment = appartment;
+        this.suite = suite;
         this.zipCode = zipCode;
         this.country = country;
         this.cardHolder = cardHolder;
@@ -73,8 +99,8 @@ public class Account implements Serializable {
         return houseNumber;
     }
 
-    public String getAppartment() {
-        return appartment;
+    public String getApartment() {
+        return suite;
     }
 
     public String getZipCode() {
