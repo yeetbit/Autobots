@@ -23,7 +23,7 @@ import java.io.Serializable;
  * @author obi
  */
 
-public class Account implements Serializable {
+public class PersonalInformation implements Serializable {
     
     /**
      * The Account object is a representation of the user data, 
@@ -64,7 +64,7 @@ public class Account implements Serializable {
      * @param date          credit card expiration date 
      * @param cvc           card verification code
      */
-    public Account(String name, String lastName, String emailAddress, String street, String houseNumber, String suite, String zipCode, String country, String cardHolder, String cardNumber, String date, String cvc) {
+    public PersonalInformation(String name, String lastName, String emailAddress, String street, String houseNumber, String suite, String zipCode, String country, String cardHolder, String cardNumber, String date, String cvc) {
         this.name = name;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
