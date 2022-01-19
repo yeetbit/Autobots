@@ -14,32 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.model;
-
-import java.io.Serializable;
+package dev.obit.tools.controller.services;
 
 /**
  *
  * @author obi
  */
-public class OnlineAccount implements Serializable {
-    
-    private final String userName;
-    private final String passWord;
-
-    public OnlineAccount(String userName, String passWord) {
-        this.userName = userName;
-        this.passWord = passWord;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-    
-    
+public class RestService {
     
 }
