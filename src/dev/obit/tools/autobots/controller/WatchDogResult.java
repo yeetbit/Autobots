@@ -14,34 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package dev.obit.tools.autobots;
-
-import dev.obit.tools.autobots.controller.services.WatchDog;
-import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.util.Duration;
+package dev.obit.tools.autobots.controller;
 
 /**
  *
  * @author obi
  */
-public class Main extends Application {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        WatchDog watchdog = new WatchDog();
-        watchdog.setPeriod(Duration.seconds(5L));
-        watchdog.start();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        
-        
-    }
+public enum WatchDogResult {
+    
+    READY, SCHEDULED, SUCCEEDED, FAILED;
     
 }

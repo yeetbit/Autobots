@@ -16,109 +16,42 @@
  */
 package dev.obit.tools.autobots.controller.services;
 
+import dev.obit.tools.autobots.controller.WatchDogResult;
 import dev.obit.tools.autobots.model.Product;
-import java.time.Duration;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ScheduledFuture;
 import javafx.application.Platform;
+import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.util.Duration;
+import org.w3c.dom.Document;
 
 /**
  *
  * @author obi
  */
-public class WatchDog extends Service{
+public class WatchDog extends ScheduledService<WatchDogResult>{
     
     
     private ArrayList<Product> products;
-    private Timer timer;
     
-    private boolean noRobot;
-    private int noRobotFactor;
-    private long delay;
-    private boolean cancel;
-    private ScheduledFuture<?> taskHandle;
-    
-   
-    public void activateWatchDog(Long delay){
-        timer.schedule(newTimerTask(), delay);
-    }
-   
-    public void cancelWatchDog(){
-        timer.cancel();
-    }
-    
-    private void setNoRobotFactor(int noRobotFactor) {
-        
-    }
-    
-    
-    private TimerTask newTimerTask(){
-        return new TimerTask(){
-            @Override
-            public void run(){
-                Platform.runLater(()->{
-                    if(noRobot){
-                        try {
-                            Thread.sleep(noRobotFactor);
-                            setNoRobotFactor(noRobotFactor);
-                        } catch (InterruptedException ex) {
-                            System.out.println(ex.getMessage());
-                        }
-                    }
-                    /**
-                     * 
-                     * TODO: actual fetching of online content
-                     * 
-                     */
-                });
+    @Override
+    protected Task<WatchDogResult> createTask() {
+        return new Task<WatchDogResult>() {
+            protected WatchDogResult call() {
+                 
+                return null;
             }
         };
     }
-    
-    public void init(){
-        
-        // specify interval (scheduled time - current time)        
-        LocalDateTime current = LocalDateTime.now();    
-        LocalDateTime schedule = current.plusSeconds(delay());
-           
-        // calculate duration
-        Duration duration = Duration.between(current, schedule);
-        long delay = Math.abs(duration.toMillis()); //or some other TimeUnit
 
-        // reserve thread and schedule runnable task
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        taskHandle = executor.schedule(() -> {
-            
-             // run your code here
+   
 
-            if(cancel){
-                init(); // reinitialize for next schedule
-                
-            }
-        }, delay, TimeUnit.SECONDS);
-    }
-    
-    private long delay(){
-        if(noRobot){
-            /**
-             * implement noRobot factor to humanize the delay
-             */
-            return 0L;
-        }else{
-            return delay;
-        }
-        
-    }
-
-    @Override
-    protected Task createTask(){
-        
-        
-    }
+ 
     
 }
