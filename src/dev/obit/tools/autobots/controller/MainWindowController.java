@@ -16,9 +16,11 @@
  */
 package dev.obit.tools.autobots.controller;
 
+import dev.obit.tools.autobots.controller.services.WatchDog;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -34,5 +36,18 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
+    
+    private void test(){
+        
+        WatchDog watchdog = new WatchDog();
+        watchdog.setPeriod(Duration.seconds(5L));
+        watchdog.start();
+        watchdog.setOnSucceeded(event -> {
+            WatchDogResult result = watchdog.getValue();
+            
+        });
+    }
     
 }

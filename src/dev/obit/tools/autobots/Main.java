@@ -36,6 +36,10 @@ public class Main extends Application {
         WatchDog watchdog = new WatchDog();
         watchdog.setPeriod(Duration.seconds(5L));
         watchdog.start();
+        watchdog.setOnSucceeded(event -> {
+            WatchDogResult result = WatchDog.
+            
+        });
     }
 
     @Override
