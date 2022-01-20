@@ -17,6 +17,7 @@
 package dev.obit.tools.autobots.controller;
 
 import dev.obit.tools.autobots.controller.services.WatchDog;
+import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -27,7 +28,7 @@ import javafx.util.Duration;
  *
  * @author obi
  */
-public class MainWindowController implements Initializable {
+public class MainWindowController extends BaseController implements Initializable  {
 
     /**
      * Initializes the controller class.
@@ -36,8 +37,10 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
+
+    public MainWindowController(ViewFactory viewFactory, String FXMLName) {
+        super(viewFactory, FXMLName);
+    }
     
     private void test(){
         

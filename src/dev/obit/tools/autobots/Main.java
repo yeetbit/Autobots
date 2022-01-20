@@ -17,6 +17,7 @@
 
 package dev.obit.tools.autobots;
 
+import dev.obit.tools.autobots.controller.WatchDogResult;
 import dev.obit.tools.autobots.controller.services.WatchDog;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -37,7 +38,7 @@ public class Main extends Application {
         watchdog.setPeriod(Duration.seconds(5L));
         watchdog.start();
         watchdog.setOnSucceeded(event -> {
-            WatchDogResult result = WatchDog.
+            WatchDogResult result = watchdog.getValue();
             
         });
     }

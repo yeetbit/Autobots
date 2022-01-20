@@ -25,6 +25,22 @@ import dev.obit.tools.autobots.view.ViewFactory;
 public abstract class BaseController {
     
     protected ViewFactory viewFactory;
+    protected String FXMLName;
+
+    public BaseController(ViewFactory viewFactory, String FXMLName) {
+        this.viewFactory = viewFactory;
+        this.FXMLName = FXMLName;
+    }
+
+    public ViewFactory getViewFactory() {
+        return viewFactory;
+    }
+
+    public String getFXMLName() {
+        return FXMLName;
+    }
+    
+    
     
     
 }

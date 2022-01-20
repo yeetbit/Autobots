@@ -16,6 +16,7 @@
  */
 package dev.obit.tools.autobots.controller;
 
+import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -25,7 +26,7 @@ import javafx.fxml.Initializable;
  *
  * @author obi
  */
-public class EntryWindowController implements Initializable {
+public class EntryWindowController extends BaseController implements Initializable{
 
     /**
      * Initializes the controller class.
@@ -34,5 +35,9 @@ public class EntryWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    public EntryWindowController(ViewFactory viewFactory, String FXMLName) {
+        super(viewFactory, FXMLName);
+    }
     
 }

@@ -16,6 +16,9 @@
  */
 package dev.obit.tools.autobots.view;
 
+import dev.obit.tools.autobots.controller.BaseController;
+import dev.obit.tools.autobots.controller.EntryWindowController;
+import dev.obit.tools.autobots.controller.MainWindowController;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Platform;
@@ -60,23 +63,16 @@ public class ViewFactory {
         this.fontSize = fontSize;
     }
     
-    public ViewFactory(EmailManager emailManager){
-        this.emailManager = emailManager;
-    }
-    
-    public void showLoginWindow(){
-        BaseController controller = new LoginWindowController(emailManager, this, "LoginWindow.fxml");
-        initStage(controller, true);
-    }
+  
     
     public void showMainWindow(){
-        BaseController controller = new MainWindowController(emailManager, this, "MainWindow.fxml");
+        BaseController controller = new MainWindowController(this, "MainWindow.fxml");
         initStage(controller, true);
         mainWindowInitialized = true;
     }
     
     public void showPreferencesWindow(){
-        BaseController controller = new PreferencesWindowController(emailManager, this, "PreferencesWindow.fxml");
+        BaseController controller = new EntryWindowController(this, "EntryWindow.fxml");
         initStage(controller, false);
     }
 
@@ -128,4 +124,3 @@ public class ViewFactory {
     
 }
 
-}
