@@ -20,6 +20,8 @@ import dev.obit.tools.autobots.controller.services.WatchDog;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
@@ -64,7 +66,7 @@ public class MainWindowController extends BaseController implements Initializabl
         super(viewFactory, FXMLName);
     }
     
-    private void test(){
+    private void start(){
         
         WatchDog watchdog = new WatchDog();
         watchdog.setPeriod(Duration.seconds(5L));
@@ -73,6 +75,26 @@ public class MainWindowController extends BaseController implements Initializabl
             WatchDogResult result = watchdog.getValue();
             
         });
+    }
+    
+    @FXML
+    void aboutButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void closeWindowAndExit(ActionEvent event) {
+
+    }
+
+    @FXML
+    void closeWindowRunBackground(ActionEvent event) {
+
+    }
+
+    @FXML
+    void newJob(ActionEvent event) {
+
     }
     
 }

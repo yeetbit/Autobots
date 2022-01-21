@@ -12,15 +12,15 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="newJobMenuButton1" mnemonicParsing="false" text="New Job" />
-                  <MenuItem fx:id="closeMenuButton" mnemonicParsing="false" text="Close(run in Background)" />
-              <MenuItem fx:id="exitMenuButton" mnemonicParsing="false" text="Exit" />
+                  <MenuItem fx:id="newJobMenuButton" mnemonicParsing="false" onAction="#newJob" text="New Job" />
+                  <MenuItem fx:id="closewindow" mnemonicParsing="false" onAction="#closeWindowRunBackground" text="Close(run in Background)" />
+              <MenuItem fx:id="exitMenuButton" mnemonicParsing="false" onAction="#closeWindowAndExit" text="Exit" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit" />
+          <Menu fx:id="edit" mnemonicParsing="false" text="Edit" />
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem fx:id="aboutMenuButton" mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="aboutMenuButton" mnemonicParsing="false" onAction="#aboutButton" text="About" />
             </items>
           </Menu>
         </menus>

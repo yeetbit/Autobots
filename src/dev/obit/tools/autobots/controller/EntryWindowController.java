@@ -19,7 +19,13 @@ package dev.obit.tools.autobots.controller;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -27,6 +33,59 @@ import javafx.fxml.Initializable;
  * @author obi
  */
 public class EntryWindowController extends BaseController implements Initializable{
+	@FXML
+	private AnchorPane rootPane;
+
+    @FXML
+    private TextField cardHolderField;
+
+    @FXML
+    private TextField countryField;
+
+    @FXML
+    private TextField creditcardNumberField;
+
+    @FXML
+    private TextField csvField;
+
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField housNumField;
+
+    @FXML
+    private ChoiceBox<?> knownAccountsChoiceBox;
+
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private TextField phoneNumberField;
+
+    @FXML
+    private TextField profileNameField;
+
+    @FXML
+    private ChoiceBox<?> shopApiChoiceBox;
+
+    @FXML
+    private TextField streetField;
+
+    @FXML
+    private TextField suiteField;
+
+    @FXML
+    private TextField userNameField;
+
+    @FXML
+    private TextField zipcodeField;
 
     /**
      * Initializes the controller class.
@@ -34,10 +93,13 @@ public class EntryWindowController extends BaseController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    	
     }    
 
     public EntryWindowController(ViewFactory viewFactory, String FXMLName) {
         super(viewFactory, FXMLName);
     }
+    
+    
     
 }
