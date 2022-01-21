@@ -20,7 +20,11 @@ import dev.obit.tools.autobots.controller.services.WatchDog;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 /**
@@ -30,9 +34,27 @@ import javafx.util.Duration;
  */
 public class MainWindowController extends BaseController implements Initializable  {
 
-    /**
-     * Initializes the controller class.
-     */
+   
+    
+    @FXML
+    private AnchorPane RootPane;
+
+    @FXML
+    private MenuItem aboutMenuButton;
+
+    @FXML
+    private MenuItem closeMenuButton;
+
+    @FXML
+    private MenuItem exitMenuButton;
+
+    @FXML
+    private MenuItem newJobMenuButton1;
+
+    @FXML
+    private TreeView<?> treeView;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

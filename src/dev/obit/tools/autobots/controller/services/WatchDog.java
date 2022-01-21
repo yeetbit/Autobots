@@ -44,6 +44,7 @@ public class WatchDog extends ScheduledService<WatchDogResult>{
     protected Task<WatchDogResult> createTask() {
         return new Task<WatchDogResult>() {
             protected WatchDogResult call() {
+
                 return fetchData();
             }
         };
