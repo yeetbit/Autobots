@@ -21,5 +21,7 @@ package dev.obit.tools.autobots.controller.services;
  * @author obi
  */
 public class RestService {
+	
+	private final String earl = "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
     
 }
