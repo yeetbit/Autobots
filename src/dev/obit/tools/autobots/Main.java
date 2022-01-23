@@ -19,8 +19,13 @@ package dev.obit.tools.autobots;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import dev.obit.tools.autobots.view.ViewFactory;
+
 import java.util.Set;
 
 
@@ -30,23 +35,30 @@ import java.util.Set;
  */
 public class Main extends Application {
 
-    static final Map<String, String> env = System.getenv();
-    /**
+     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        for(Map.Entry<String, String> el:env.entrySet()){
-            System.out.println("Key: "+el.getKey()+"\tValue: "+el.getValue());
-            
-        }
+    	ViewFactory viewFactory = new ViewFactory();
+    	
+    	Environment.setEnvironment(System.getProperty("os.name"));
+    	if(Environment.getEnvironment()!=null) {
+    		viewFactory.showMainWindow();
+    		
+    	}else {
+    		viewFactory.showOSWindow();
+    		
+    	}
+   
   
     }
 
-    @Override
+
+	@Override
     public void start(Stage stage) throws Exception {
         
         
     }
     
+
 }

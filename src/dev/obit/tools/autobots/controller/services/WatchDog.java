@@ -19,17 +19,10 @@ package dev.obit.tools.autobots.controller.services;
 import dev.obit.tools.autobots.controller.WatchDogResult;
 import dev.obit.tools.autobots.model.Product;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ScheduledFuture;
-import javafx.application.Platform;
 import javafx.concurrent.ScheduledService;
-import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.util.Duration;
-import org.w3c.dom.Document;
+
 
 /**
  *

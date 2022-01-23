@@ -70,8 +70,14 @@ public class ViewFactory {
         initStage(controller, true);
         mainWindowInitialized = true;
     }
+
+    public void showOSWindow() {
+        BaseController controller = new OSChooserController(this, "MainWindow.fxml");
+        initStage(controller, true);
+    	
+    }
     
-    public void showPreferencesWindow(){
+    public void showEntryWindow(){
         BaseController controller = new EntryWindowController(this, "EntryWindow.fxml");
         initStage(controller, false);
     }
@@ -120,6 +126,7 @@ public class ViewFactory {
         }
         
     }
+
     
     
 }
