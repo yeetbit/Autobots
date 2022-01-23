@@ -31,8 +31,8 @@ public enum UrlProfile {
         
         switch(url){
             case NOTEBOOKBILLIGER : 
-                return "https://www.notebooksbilliger.de/pc+hardware/grafikkarten/page/1?box_8308_2816%5B%5D=15614038&sort=price&order=asc&availability=alle";
-            default : return "https://www.notebooksbilliger.de/pc+hardware/grafikkarten/page/1?box_8308_2816%5B%5D=15614038&sort=price&order=asc&availability=alle";
+                return "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
+            default : return "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
         } 
         
     }

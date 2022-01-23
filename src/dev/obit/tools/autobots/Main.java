@@ -17,11 +17,12 @@
 
 package dev.obit.tools.autobots;
 
-import dev.obit.tools.autobots.controller.WatchDogResult;
-import dev.obit.tools.autobots.controller.services.WatchDog;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 
 /**
  *
@@ -29,18 +30,17 @@ import javafx.util.Duration;
  */
 public class Main extends Application {
 
+    static final Map<String, String> env = System.getenv();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        WatchDog watchdog = new WatchDog();
-        watchdog.setPeriod(Duration.seconds(5L));
-        watchdog.start();
-        watchdog.setOnSucceeded(event -> {
-            WatchDogResult result = watchdog.getValue();
+        for(Map.Entry<String, String> el:env.entrySet()){
+            System.out.println("Key: "+el.getKey()+"\tValue: "+el.getValue());
             
-        });
+        }
+  
     }
 
     @Override
