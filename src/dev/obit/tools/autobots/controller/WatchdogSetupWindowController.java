@@ -26,6 +26,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -92,13 +93,17 @@ public class WatchdogSetupWindowController extends BaseController implements Ini
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    	viewFactory.getStage(stageKey).setOnCloseRequest((e)-> {
+    		viewFactory.closeStage(stageKey);
+    	});
     	
     }    
 
     public WatchdogSetupWindowController(ViewFactory viewFactory, String FXMLName) {
         super(viewFactory, FXMLName);
     }
+    
+    
     
     
     

@@ -23,7 +23,7 @@ package dev.obit.tools.autobots.model;
 public enum UrlProfile {
     
     /**
-     * UrlProfile's are PRE-configured API profiles for different website's
+     * UrlProfile's are PRE-configured API/Scrape profiles for different website's
      */
     NOTEBOOKBILLIGER;
     

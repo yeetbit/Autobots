@@ -22,6 +22,7 @@ import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,14 +59,25 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private TreeView<?> treeView;
     
+    public MainWindowController(ViewFactory viewFactory, String FXMLName) {
+    	super(viewFactory, FXMLName);
+    }
+    private Stage stage;
+    private boolean hasSystemExit = true;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    	stage = viewFactory.getStage(stageKey);
+    	stage.setTitle("Autobots on "+Environment.getEnvironment().toString().toLowerCase());
+        stage.setOnCloseRequest((e) -> {
+        	if(hasSystemExit){
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+       
     }    
 
-    public MainWindowController(ViewFactory viewFactory, String FXMLName) {
-        super(viewFactory, FXMLName);
-    }
         
     private void start(){
         
@@ -85,11 +97,14 @@ public class MainWindowController extends BaseController implements Initializabl
 
     @FXML
     void closeWindowAndExit(ActionEvent event) {
+    	hasSystemExit = true;
 
     }
 
     @FXML
     void closeWindowRunBackground(ActionEvent event) {
+    	hasSystemExit = false;
+    	viewFactory.closeStage(stageKey);
 
     }
 

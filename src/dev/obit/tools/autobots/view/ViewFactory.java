@@ -84,8 +84,12 @@ public class ViewFactory {
     }
     
     public void showSetupWindow(){
-        BaseController controller = new WatchdogSetupWindowController(this, "EntryWindow.fxml");
-        initStage(controller,"SETUPWINDOW", false);
+    	if(!activeStages.containsKey("SETUPWINDOW")) {
+    		BaseController controller = new WatchdogSetupWindowController(this, "EntryWindow.fxml");
+    		initStage(controller,"SETUPWINDOW", false);
+    	}else {
+    		System.out.println("setup window is already open");
+    	}
     }
 
     public boolean isMainWindowInitialized() {
@@ -102,13 +106,7 @@ public class ViewFactory {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            if(hasSystemExit){
-                stage.setOnCloseRequest((e) -> {
-                    Platform.exit();
-                    System.exit(0);
-                });
-                stage.setTitle("Autobots on "+Environment.getEnvironment().toString().toLowerCase());
-            }
+       
             controller.setStageKey(stageKey);
             activeStages.put(stageKey, stage);
             updateStyles();
@@ -122,7 +120,11 @@ public class ViewFactory {
     public void closeStage(String stageKey){
         activeStages.get(stageKey).close();
         activeStages.remove(stageKey);
-        
+        System.out.println(stageKey+" succesfully closed");
+    }
+    
+    public Stage getStage(String stageKey) {
+    	return activeStages.get(stageKey);
     }
     
     public void updateStyles(){
