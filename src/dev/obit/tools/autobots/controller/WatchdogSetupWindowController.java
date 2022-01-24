@@ -32,7 +32,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author obi
  */
-public class EntryWindowController extends BaseController implements Initializable{
+public class WatchdogSetupWindowController extends BaseController implements Initializable{
 	@FXML
 	private AnchorPane rootPane;
 
@@ -96,7 +96,7 @@ public class EntryWindowController extends BaseController implements Initializab
     	
     }    
 
-    public EntryWindowController(ViewFactory viewFactory, String FXMLName) {
+    public WatchdogSetupWindowController(ViewFactory viewFactory, String FXMLName) {
         super(viewFactory, FXMLName);
     }
     

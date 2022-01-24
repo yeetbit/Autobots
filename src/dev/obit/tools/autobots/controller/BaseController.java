@@ -26,6 +26,7 @@ public abstract class BaseController {
     
     protected ViewFactory viewFactory;
     protected String FXMLName;
+    protected String stageKey;
 
     public BaseController(ViewFactory viewFactory, String FXMLName) {
         this.viewFactory = viewFactory;
@@ -39,6 +40,14 @@ public abstract class BaseController {
     public String getFXMLName() {
         return FXMLName;
     }
+
+	public String getStageKey() {
+		return stageKey;
+	}
+
+	public void setStageKey(String stageKey) {
+		this.stageKey = stageKey;
+	}
     
     
     

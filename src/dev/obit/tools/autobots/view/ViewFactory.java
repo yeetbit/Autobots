@@ -18,12 +18,15 @@ package dev.obit.tools.autobots.view;
 
 import dev.obit.tools.autobots.Environment;
 import dev.obit.tools.autobots.controller.BaseController;
-import dev.obit.tools.autobots.controller.EntryWindowController;
+import dev.obit.tools.autobots.controller.WatchdogSetupWindowController;
 import dev.obit.tools.autobots.controller.MainWindowController;
 import dev.obit.tools.autobots.controller.OSChooserController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -47,7 +50,7 @@ public class ViewFactory {
     private ColorTheme colorTheme = ColorTheme.DEFAULT;
     private FontSize fontSize = FontSize.MEDIUM;
 
-    private ArrayList<Stage> activeStages = new ArrayList<>();
+    private Map<String, Stage> activeStages = new HashMap<>();
     private boolean mainWindowInitialized = false;
 
     public ColorTheme getColorTheme() {
@@ -70,19 +73,19 @@ public class ViewFactory {
     
     public void showMainWindow(){
         BaseController controller = new MainWindowController(this, "MainWindow.fxml");
-        initStage(controller, true);
+        initStage(controller,"MAINWINDOW", true);
         mainWindowInitialized = true;
     }
 
     public void showOSWindow() {
         BaseController controller = new OSChooserController(this, "OSChooser.fxml");
-        initStage(controller, true);
+        initStage(controller,"OSWINDOW", true);
     	
     }
     
-    public void showEntryWindow(){
-        BaseController controller = new EntryWindowController(this, "EntryWindow.fxml");
-        initStage(controller, false);
+    public void showSetupWindow(){
+        BaseController controller = new WatchdogSetupWindowController(this, "EntryWindow.fxml");
+        initStage(controller,"SETUPWINDOW", false);
     }
 
     public boolean isMainWindowInitialized() {
@@ -90,7 +93,7 @@ public class ViewFactory {
     }
 
       
-    private void initStage(BaseController controller, Boolean hasSystemExit){
+    private void initStage(BaseController controller,String stageKey, Boolean hasSystemExit){
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource(controller.getFXMLName()));
         fxmlloader.setController(controller);
         
@@ -106,7 +109,8 @@ public class ViewFactory {
                 });
                 stage.setTitle("Autobots on "+Environment.getEnvironment().toString().toLowerCase());
             }
-            activeStages.add(stage);
+            controller.setStageKey(stageKey);
+            activeStages.put(stageKey, stage);
             updateStyles();
         }catch(IOException ioe){
             System.out.println("Something went wrong during init: "+ANSI_GREEN+controller.getClass().toString()+ANSI_RESET);
@@ -115,13 +119,14 @@ public class ViewFactory {
         }
     }
     
-    public void closeStage(Stage stage){
-        stage.close();
-        activeStages.remove(stage);
+    public void closeStage(String stageKey){
+        activeStages.get(stageKey).close();
+        activeStages.remove(stageKey);
+        
     }
     
     public void updateStyles(){
-        for(Stage stage : activeStages){
+        for(Stage stage : activeStages.values()){
             Scene scene = stage.getScene();
             // handle CSS
             scene.getStylesheets().clear();
