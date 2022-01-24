@@ -17,7 +17,7 @@
 package dev.obit.tools.autobots.controller;
 
 import dev.obit.tools.autobots.Environment;
-import dev.obit.tools.autobots.controller.services.WatchDog;
+import dev.obit.tools.autobots.controller.services.RESTServiceClient;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,37 +67,34 @@ public class MainWindowController extends BaseController implements Initializabl
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	stage = viewFactory.getStage(stageKey);
-    	stage.setTitle("Autobots on "+Environment.getEnvironment().toString().toLowerCase());
-        stage.setOnCloseRequest((e) -> {
-        	if(hasSystemExit){
-                Platform.exit();
-                System.exit(0);
-            }
-        });
+   
        
     }    
 
         
     private void start(){
         
-        WatchDog watchdog = new WatchDog();
-        watchdog.setPeriod(Duration.seconds(5L));
-        watchdog.start();
-        watchdog.setOnSucceeded(event -> {
-            WatchDogResult result = watchdog.getValue();
-            
-        });
+        RESTServiceClient watchdog = new RESTServiceClient();
+//        watchdog.fetch();
+//        watchdog.setPeriod(Duration.seconds(5L));
+//        watchdog.start();
+//        watchdog.setOnSucceeded(event -> {
+//            WatchDogResult result = watchdog.getValue();
+//            
+//        });
     }
     
     @FXML
     void aboutButton(ActionEvent event) {
+    	
 
     }
 
     @FXML
     void closeWindowAndExit(ActionEvent event) {
     	hasSystemExit = true;
+    	viewFactory.closeStage(stageKey);
+    	System.exit(0);
 
     }
 
@@ -111,7 +108,8 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     
     void newJob(ActionEvent event) {
-    	viewFactory.showSetupWindow();
+//    	viewFactory.showSetupWindow();
+    	start();
 
     }
     

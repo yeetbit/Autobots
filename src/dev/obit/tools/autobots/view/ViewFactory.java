@@ -47,28 +47,11 @@ public class ViewFactory {
     private static final String ANSI_PURPLE = "\u001B[35m";
     private static final String ANSI_CYAN = "\u001B[36m";
     private static final String ANSI_WHITE = "\u001B[37m";
-    private ColorTheme colorTheme = ColorTheme.DEFAULT;
-    private FontSize fontSize = FontSize.MEDIUM;
 
     private Map<String, Stage> activeStages = new HashMap<>();
     private boolean mainWindowInitialized = false;
 
-    public ColorTheme getColorTheme() {
-        return colorTheme;
-    }
-
-    public FontSize getFontSize() {
-        return fontSize;
-    }
-
-    public void setColorTheme(ColorTheme colorTheme) {
-        this.colorTheme = colorTheme;
-    }
-
-    public void setFontSize(FontSize fontSize) {
-        this.fontSize = fontSize;
-    }
-    
+  
   
     
     public void showMainWindow(){
@@ -106,10 +89,16 @@ public class ViewFactory {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-       
+            
+        	stage.setTitle("Autobots on "+Environment.getEnvironment().toString().toLowerCase());
+        	if(hasSystemExit){
+        		stage.setOnCloseRequest((e) -> {
+        			Platform.exit();
+        			System.exit(0);
+    			});
+        	}
             controller.setStageKey(stageKey);
             activeStages.put(stageKey, stage);
-            updateStyles();
         }catch(IOException ioe){
             System.out.println("Something went wrong during init: "+ANSI_GREEN+controller.getClass().toString()+ANSI_RESET);
             ioe.printStackTrace();
@@ -127,16 +116,7 @@ public class ViewFactory {
     	return activeStages.get(stageKey);
     }
     
-    public void updateStyles(){
-        for(Stage stage : activeStages.values()){
-            Scene scene = stage.getScene();
-            // handle CSS
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
-            scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
-        }
-        
-    }
+ 
 
     
     
