@@ -109,6 +109,7 @@ public class MainWindowController extends BaseController implements Initializabl
     }
 
     @FXML
+    
     void newJob(ActionEvent event) {
     	viewFactory.showSetupWindow();
 
