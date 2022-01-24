@@ -39,23 +39,22 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    	ViewFactory viewFactory = new ViewFactory();
-    	
-    	Environment.setEnvironment(System.getProperty("os.name"));
-    	if(Environment.getEnvironment()!=null) {
-    		viewFactory.showMainWindow();
-    		
-    	}else {
-    		viewFactory.showOSWindow();
-    		
-    	}
-   
-  
+    	launch(args);
     }
 
 
 	@Override
     public void start(Stage stage) throws Exception {
+		ViewFactory viewFactory = new ViewFactory();
+		
+		Environment.setEnvironment(System.getProperty("os.name"));
+		if(Environment.getEnvironment()!=null) {
+			viewFactory.showMainWindow();
+			
+		}else {
+			viewFactory.showOSWindow();
+			
+		}
         
         
     }

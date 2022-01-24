@@ -16,9 +16,12 @@
  */
 package dev.obit.tools.autobots.view;
 
+import dev.obit.tools.autobots.Environment;
 import dev.obit.tools.autobots.controller.BaseController;
 import dev.obit.tools.autobots.controller.EntryWindowController;
 import dev.obit.tools.autobots.controller.MainWindowController;
+import dev.obit.tools.autobots.controller.OSChooserController;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Platform;
@@ -72,7 +75,7 @@ public class ViewFactory {
     }
 
     public void showOSWindow() {
-        BaseController controller = new OSChooserController(this, "MainWindow.fxml");
+        BaseController controller = new OSChooserController(this, "OSChooser.fxml");
         initStage(controller, true);
     	
     }
@@ -101,6 +104,7 @@ public class ViewFactory {
                     Platform.exit();
                     System.exit(0);
                 });
+                stage.setTitle("Autobots on "+Environment.getEnvironment().toString().toLowerCase());
             }
             activeStages.add(stage);
             updateStyles();

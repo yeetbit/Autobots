@@ -1,8 +1,11 @@
 package dev.obit.tools.autobots;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public enum Environment {
 	
-	UNIX, LINUX, DARWIN, WINDOWS;
+	UNIX, LINUX, DARWIN, WINDOWS, NULL;
 	
 	private static Environment current;
 	
@@ -14,7 +17,7 @@ public enum Environment {
 			current = Environment.LINUX;
 		}else if(t.contains("darw")) {
 			current = Environment.DARWIN;
-		}else if(t.contains("wind")) {
+		}else if(t.contains("indo")) {
 			current = Environment.WINDOWS;
 		}else {
 			current = null;
@@ -24,6 +27,15 @@ public enum Environment {
 	
 	public static Environment getEnvironment() {
 		return current;
+		
+	}
+	
+	public static Collection<Environment> getAll(){
+		Collection<Environment> envors = new ArrayList<>();
+		for(Environment e : Environment.values()) {
+			envors.add(e);
+		};
+		return envors;
 		
 	}
 

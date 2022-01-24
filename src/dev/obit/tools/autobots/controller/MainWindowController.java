@@ -16,6 +16,7 @@
  */
 package dev.obit.tools.autobots.controller;
 
+import dev.obit.tools.autobots.Environment;
 import dev.obit.tools.autobots.controller.services.WatchDog;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
@@ -27,6 +28,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -56,7 +58,6 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     private TreeView<?> treeView;
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -65,7 +66,7 @@ public class MainWindowController extends BaseController implements Initializabl
     public MainWindowController(ViewFactory viewFactory, String FXMLName) {
         super(viewFactory, FXMLName);
     }
-    
+        
     private void start(){
         
         WatchDog watchdog = new WatchDog();

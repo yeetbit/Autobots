@@ -5,17 +5,21 @@ import java.util.ResourceBundle;
 
 import dev.obit.tools.autobots.view.ViewFactory;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceDialog;
+import dev.obit.tools.autobots.Environment;
 
 public class OSChooserController extends BaseController implements Initializable {
 
+	ChoiceDialog<Environment> osNotRec;
 	public OSChooserController(ViewFactory viewFactory, String FXMLName) {
 		super(viewFactory, FXMLName);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		osNotRec = new ChoiceDialog<Environment>(Environment.NULL, Environment.getAll());
+		osNotRec.setHeaderText("Autobots could not recognize the underlying system");
+		osNotRec.setTitle("Choose operating system");
 		
 	}
 
