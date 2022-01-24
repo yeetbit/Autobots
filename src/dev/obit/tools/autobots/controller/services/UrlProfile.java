@@ -20,8 +20,22 @@ package dev.obit.tools.autobots.controller.services;
  *
  * @author obi
  */
-public class RestService {
-	
-	private final String earl = "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
+public enum UrlProfile {
+    
+    /**
+     * UrlProfile's are PRE-configured API/Scrape profiles for different website's
+     */
+    NOTEBOOKBILLIGER;
+    
+    public String getURL(UrlProfile url){
+        
+        switch(url){
+            case NOTEBOOKBILLIGER : 
+                return "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
+            default : return "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
+        } 
+        
+    }
+    
     
 }
