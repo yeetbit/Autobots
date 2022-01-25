@@ -17,6 +17,7 @@
 package dev.obit.tools.autobots.controller;
 
 import dev.obit.tools.autobots.ServiceManager;
+import dev.obit.tools.autobots.model.DataTargetFactory;
 import dev.obit.tools.autobots.view.ViewFactory;
 
 /**
@@ -29,7 +30,7 @@ public abstract class BaseController {
     protected String FXMLName;
     protected String stageKey;
 
-    public BaseController(ServiceManager serviceManager, ViewFactory viewFactory, String FXMLName) {
+    public BaseController(ServiceManager serviceManager, ViewFactory viewFactory, DataTargetFactory dataTargetFactory, String FXMLName) {
         this.viewFactory = viewFactory;
         this.FXMLName = FXMLName;
     }

@@ -17,6 +17,7 @@
 package dev.obit.tools.autobots.controller;
 
 import dev.obit.tools.autobots.ServiceManager;
+import dev.obit.tools.autobots.model.DataTargetFactory;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -129,8 +130,8 @@ public class SetupWindowController extends BaseController implements Initializab
     	
     }    
 
-    public SetupWindowController(ServiceManager serviceManager, ViewFactory viewFactory, String FXMLName) {
-        super(serviceManager, viewFactory, FXMLName);
+    public SetupWindowController(ServiceManager serviceManager, ViewFactory viewFactory, DataTargetFactory dataTargetFactory, String FXMLName) {
+        super(serviceManager, viewFactory, dataTargetFactory, FXMLName);
     }
     
     

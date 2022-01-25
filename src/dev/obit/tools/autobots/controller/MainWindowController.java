@@ -19,7 +19,9 @@ package dev.obit.tools.autobots.controller;
 import dev.obit.tools.autobots.Environment;
 import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.services.RESTServiceClient;
-import dev.obit.tools.autobots.view.TreeViewX;
+import dev.obit.tools.autobots.model.DataTargetFactory;
+import dev.obit.tools.autobots.model.Profile;
+import dev.obit.tools.autobots.model.ServiceConfig;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,9 +66,12 @@ public class MainWindowController extends BaseController implements Initializabl
     private TreeView<String> treeView;
     
     private ServiceManager serviceManager;
-    public MainWindowController(ServiceManager serviceManager, ViewFactory viewFactory, String FXMLName) {
-    	super(serviceManager, viewFactory, FXMLName);
+    private DataTargetFactory dataTargetFactory;
+    
+    public MainWindowController(ServiceManager serviceManager, ViewFactory viewFactory, DataTargetFactory dataTargetFactory, String FXMLName) {
+    	super(serviceManager, viewFactory, dataTargetFactory, FXMLName);
     	this.serviceManager = serviceManager;
+    	this.dataTargetFactory = dataTargetFactory;
     }
     private Stage stage;
     private boolean hasSystemExit = true;
@@ -78,8 +83,16 @@ public class MainWindowController extends BaseController implements Initializabl
 
         
     private void start(){
-    	
-
+    	// Test config
+    	dataTargetFactory.createNewService(new ServiceConfig(
+    			Profile.NOTEBOOKBILLIGER, 	// target profile
+    			"TestService",				// service name
+    			"",							// target product (after domain)
+    			1200L, 						// request interval
+    			5000, 						// connection timout
+    			0, 							// price threshold
+    			"username", 				// account username
+    			"password"));				// account password
     }
     
     @FXML
@@ -106,7 +119,7 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     
     void newJob(ActionEvent event) {
-		viewFactory.showSetupWindow();
+//		viewFactory.showSetupWindow();
     	start();
 
     }

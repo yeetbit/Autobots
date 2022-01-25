@@ -20,6 +20,7 @@ import dev.obit.tools.autobots.Environment;
 import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.BaseController;
 import dev.obit.tools.autobots.controller.SetupWindowController;
+import dev.obit.tools.autobots.model.DataTargetFactory;
 import dev.obit.tools.autobots.controller.MainWindowController;
 
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class ViewFactory {
     private Map<String, Stage> activeStages = new HashMap<>();
     private boolean mainWindowInitialized = false;
     private ServiceManager serviceManager;
+    private DataTargetFactory dataTargetFactory;
 
   
   
@@ -53,14 +55,14 @@ public class ViewFactory {
 	}
 
 	public void showMainWindow(){
-        BaseController controller = new MainWindowController(serviceManager, this, "MainWindow.fxml");
+        BaseController controller = new MainWindowController(serviceManager, this, dataTargetFactory, "MainWindow.fxml");
         initStage(controller,"MAINWINDOW", true);
         mainWindowInitialized = true;
     }
 
     public void showSetupWindow(){
     	if(!activeStages.containsKey("SETUPWINDOW")) {
-    		BaseController controller = new SetupWindowController(serviceManager, this, "EntryWindow.fxml");
+    		BaseController controller = new SetupWindowController(serviceManager, this, dataTargetFactory, "EntryWindow.fxml");
     		initStage(controller,"SETUPWINDOW", false);
     	}else {
     		System.out.println("setup window is already open");
