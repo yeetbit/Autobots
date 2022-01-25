@@ -44,11 +44,15 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
 	private String targetProduct;
 	private long connectionDelay;
 	private int timeOutInterval;
-	private float pricethreshold;
+	Data data;
 	
 	public RESTServiceClient(ServiceConfig config, Data data) {
-		this.Earl = Profile.getURL(profile);
-		this.profile = profile;
+		this.profile = config.getProfile();
+		this.Earl = Profile.getURL(this.profile);
+		this.targetProduct = config.getTargetProduct();
+		this.connectionDelay = config.getConnectionDelay();
+		this.timeOutInterval = config.getTimeOutInterval();
+		
 		
 	}
     
