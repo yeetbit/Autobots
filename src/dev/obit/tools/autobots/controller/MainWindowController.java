@@ -17,7 +17,9 @@
 package dev.obit.tools.autobots.controller;
 
 import dev.obit.tools.autobots.Environment;
+import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.services.RESTServiceClient;
+import dev.obit.tools.autobots.view.TreeViewX;
 import dev.obit.tools.autobots.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +29,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -40,7 +45,6 @@ import javafx.util.Duration;
 public class MainWindowController extends BaseController implements Initializable  {
 
    
-    
     @FXML
     private AnchorPane RootPane;
 
@@ -57,31 +61,25 @@ public class MainWindowController extends BaseController implements Initializabl
     private MenuItem newJobMenuButton1;
 
     @FXML
-    private TreeView<?> treeView;
+    private TreeView<String> treeView;
     
-    public MainWindowController(ViewFactory viewFactory, String FXMLName) {
-    	super(viewFactory, FXMLName);
+    private ServiceManager serviceManager;
+    public MainWindowController(ServiceManager serviceManager, ViewFactory viewFactory, String FXMLName) {
+    	super(serviceManager, viewFactory, FXMLName);
+    	this.serviceManager = serviceManager;
     }
     private Stage stage;
     private boolean hasSystemExit = true;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   
-       
+    	setupTreeView(serviceManager.getRoot());
     }    
 
         
     private void start(){
-        
-        RESTServiceClient watchdog = new RESTServiceClient();
-//        watchdog.fetch();
-//        watchdog.setPeriod(Duration.seconds(5L));
-//        watchdog.start();
-//        watchdog.setOnSucceeded(event -> {
-//            WatchDogResult result = watchdog.getValue();
-//            
-//        });
+    	
+
     }
     
     @FXML
@@ -108,9 +106,31 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     
     void newJob(ActionEvent event) {
-//    	viewFactory.showSetupWindow();
+		viewFactory.showSetupWindow();
     	start();
 
+    }
+    
+
+    @FXML
+    void selectItemContext(ContextMenuEvent event) {
+
+    }
+
+    @FXML
+    void selectItemFocus(MouseEvent event) {
+
+    }
+    
+    private void setupTreeView(TreeItem<String> root) {
+    	treeView.setRoot(root);
+    	treeView.setShowRoot(false);
+    	
+    	
+    }
+    
+    private void createNewService() {
+    	
     }
     
 }
