@@ -6,12 +6,11 @@ module Autobots {
     requires javafx.base;
     requires javafx.media;
     requires java.desktop;
-	requires resteasy.jaxrs;
+    requires org.jsoup;
 
     opens dev.obit.tools.autobots;
     opens dev.obit.tools.autobots.model;
     opens dev.obit.tools.autobots.view;
-    opens dev.obit.tools.autobots.view.style;
     opens dev.obit.tools.autobots.controller;
   
 }

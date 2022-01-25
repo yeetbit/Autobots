@@ -17,13 +17,12 @@
 package dev.obit.tools.autobots.view;
 
 import dev.obit.tools.autobots.Environment;
+import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.BaseController;
-import dev.obit.tools.autobots.controller.WatchdogSetupWindowController;
+import dev.obit.tools.autobots.controller.SetupWindowController;
 import dev.obit.tools.autobots.controller.MainWindowController;
-import dev.obit.tools.autobots.controller.OSChooserController;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,36 +38,29 @@ import javafx.stage.Stage;
 public class ViewFactory {
     
     private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BLACK = "\u001B[1m";
-    private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_BLUE = "\u001B[34m";
-    private static final String ANSI_PURPLE = "\u001B[35m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_WHITE = "\u001B[37m";
-
+   
     private Map<String, Stage> activeStages = new HashMap<>();
     private boolean mainWindowInitialized = false;
+    private ServiceManager serviceManager;
 
   
   
     
-    public void showMainWindow(){
-        BaseController controller = new MainWindowController(this, "MainWindow.fxml");
+    public ViewFactory(ServiceManager serviceManager) {
+		// TODO Auto-generated constructor stub
+    	this.serviceManager = serviceManager;
+	}
+
+	public void showMainWindow(){
+        BaseController controller = new MainWindowController(serviceManager, this, "MainWindow.fxml");
         initStage(controller,"MAINWINDOW", true);
         mainWindowInitialized = true;
     }
 
-    public void showOSWindow() {
-        BaseController controller = new OSChooserController(this, "OSChooser.fxml");
-        initStage(controller,"OSWINDOW", true);
-    	
-    }
-    
     public void showSetupWindow(){
     	if(!activeStages.containsKey("SETUPWINDOW")) {
-    		BaseController controller = new WatchdogSetupWindowController(this, "EntryWindow.fxml");
+    		BaseController controller = new SetupWindowController(serviceManager, this, "EntryWindow.fxml");
     		initStage(controller,"SETUPWINDOW", false);
     	}else {
     		System.out.println("setup window is already open");
