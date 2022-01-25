@@ -17,6 +17,10 @@
 package dev.obit.tools.autobots.controller.services;
 
 import dev.obit.tools.autobots.controller.NetStatus;
+import dev.obit.tools.autobots.model.Data;
+import dev.obit.tools.autobots.model.Profile;
+import dev.obit.tools.autobots.model.ServiceConfig;
+
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +39,18 @@ import javafx.concurrent.Task;
  */
 public class RESTServiceClient extends ScheduledService<NetStatus>{
 
-	private String Earl = "https://jsonplaceholder.typicode.com/posts";
+	private String Earl;
+	private Profile profile;
+	private String targetProduct;
+	private long connectionDelay;
+	private int timeOutInterval;
+	private float pricethreshold;
+	
+	public RESTServiceClient(ServiceConfig config, Data data) {
+		this.Earl = Profile.getURL(profile);
+		this.profile = profile;
+		
+	}
     
     
     
