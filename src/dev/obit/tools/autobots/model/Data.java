@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-public abstract class Data extends TreeItem<String> {
+public abstract class Data extends TreeItem<String>  {
 	private ServiceManager serviceManager;
 
 	private String status;
@@ -15,7 +15,7 @@ public abstract class Data extends TreeItem<String> {
 	private String latency;
 	private String delay;
 	private String other;
-	private RESTServiceClient restClient;
+	protected RESTServiceClient restClient;
 	
 	public Data(ServiceConfig config, ServiceManager serviceManager) {
 		super(config.getServiceName());
@@ -31,9 +31,8 @@ public abstract class Data extends TreeItem<String> {
 		this.getChildren().add(new TreeItem<String>(condition));
 		this.getChildren().add(new TreeItem<String>(latency));
 		this.getChildren().add(new TreeItem<String>(delay));
-		this.getChildren().add(new TreeItem<String>(other));
+		this.getChildren().add(new TreeItem<String>(other));	
 	}
-
 	
 	public void setStatus(String status) {
 		this.status = status;

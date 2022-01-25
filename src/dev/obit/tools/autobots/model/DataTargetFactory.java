@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.obit.tools.autobots.ServiceManager;
-import dev.obit.tools.autobots.controller.services.RESTServiceClient;
 
 public class DataTargetFactory {
 	ServiceManager serviceManager;
