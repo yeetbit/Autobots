@@ -24,21 +24,21 @@ public enum NetStatus {
 			return NetStatus.REDIRECT;
 		}else if((statusCode >=400) && (statusCode<500)) {
 			switch(statusCode) {
-			case 400 : return NetStatus.BAD_REQUEST;
-			case 401 : return NetStatus.UNAUTHORIZED;
-			case 403 : return NetStatus.FORBIDDEN;
-			case 404 : return NetStatus.NOT_FOUND;
-			case 405 : return NetStatus.METHOD_NOT_ALLOWED;
-			case 429 : return NetStatus.TOO_MANY_REQUESTS;
-			default : return NetStatus.CLIENT_ERROR;
+				case 400 : return NetStatus.BAD_REQUEST;
+				case 401 : return NetStatus.UNAUTHORIZED;
+				case 403 : return NetStatus.FORBIDDEN;
+				case 404 : return NetStatus.NOT_FOUND;
+				case 405 : return NetStatus.METHOD_NOT_ALLOWED;
+				case 429 : return NetStatus.TOO_MANY_REQUESTS;
+				default : return NetStatus.CLIENT_ERROR;
 			}
 		}else if((statusCode >=500) && (statusCode<600)) {
 			switch(statusCode) {
-			case 500 : return NetStatus.INTERNAL_SERVER_ERROR;
-			case 502 : return NetStatus.BAD_GATEWAY;
-			case 503 : return NetStatus.SERVICE_UNAVAILABLE;
-			case 504 : return NetStatus.GATEWAY_TIMEOUT;
-			default : return NetStatus.SERVER_ERROR;
+				case 500 : return NetStatus.INTERNAL_SERVER_ERROR;
+				case 502 : return NetStatus.BAD_GATEWAY;
+				case 503 : return NetStatus.SERVICE_UNAVAILABLE;
+				case 504 : return NetStatus.GATEWAY_TIMEOUT;
+				default : return NetStatus.SERVER_ERROR;
 			}
 		}else {
 			return NetStatus.UNKNOWN_ERROR;
