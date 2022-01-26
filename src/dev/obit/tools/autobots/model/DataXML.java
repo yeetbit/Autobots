@@ -1,5 +1,7 @@
 package dev.obit.tools.autobots.model;
 
+import org.jsoup.nodes.Document;
+
 import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.services.RESTServiceClient;
 
@@ -13,7 +15,7 @@ public class DataXML extends Data{
 	 * @apiNote MUST use this for data handling and viewing
 	 */
 	@Override
-	public void dataExtraction(ServiceConfig config) {
+	public void handleData(Document result) {
 		// TODO: implement XML dataExtraction
 		
 	}

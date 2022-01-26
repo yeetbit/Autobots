@@ -1,21 +1,22 @@
 package dev.obit.tools.autobots;
 
 import dev.obit.tools.autobots.model.Data;
-import javafx.scene.control.TreeItem;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ServiceManager {
 	
-	private final TreeItem<String> root = new TreeItem<>("root");
+	private ObservableList<Data> services = FXCollections.observableArrayList();;
 	
-	
-	public TreeItem<String> getRoot(){
-		return this.root;
-	}
 	
 	public void addService(Data service) {
-		this.root.getChildren().add(service);
-		
-		
+		services.add(service);
+				
+	}
+
+	public ObservableList<Data> getServices() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

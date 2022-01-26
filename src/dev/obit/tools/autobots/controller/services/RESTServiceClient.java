@@ -22,6 +22,9 @@ import dev.obit.tools.autobots.model.Profile;
 import dev.obit.tools.autobots.model.ServiceConfig;
 
 import java.util.ArrayList;
+
+import org.jsoup.nodes.Document;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,30 +32,40 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
+import javafx.util.Duration;
 
 
 /**
  *
  * @author obi
  */
+//public class RESTServiceClient {
+
+	
 public class RESTServiceClient extends ScheduledService<NetStatus>{
 
-	private String Earl;
+	private String targetDomain;
 	private Profile profile;
 	private String targetProduct;
-	private long connectionDelay;
-	private int timeOutInterval;
-	Data data;
+	private int connectionDelay;
+	private int timeOutPeriod;
+	private Long start;
+	private Long stop;
+	private ServiceConfig config;
+	private Data data;
+	
 	
 	public RESTServiceClient(ServiceConfig config, Data data) {
+		this.data = data;
+		this.config = config;
 		this.profile = config.getProfile();
-		this.Earl = Profile.getURL(this.profile);
+		this.targetDomain = Profile.getTargetDomain(this.profile);
 		this.targetProduct = config.getTargetProduct();
 		this.connectionDelay = config.getConnectionDelay();
-		this.timeOutInterval = config.getTimeOutInterval();
-		
+		this.timeOutPeriod = config.getTimeOutInterval();
 		
 	}
     
@@ -62,35 +75,39 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
     protected Task<NetStatus> createTask() {
         return new Task<NetStatus>() {
             protected NetStatus call() {
-
-                return fetchData();
+            	return fetchData();
             }
         };
     }
     
-  
-    
-    public NetStatus fetchData(){
-    	
+    public NetStatus fetchData() {
+    	System.out.println("init connection to: "+targetDomain+targetProduct);
     	HttpURLConnection connection;
     	BufferedReader reader;
     	String line;
     	int status;
-    	// StringBuffer responseContent = new StringBuffer();
-    	StringBuilder responseContent = new StringBuilder();
+    	StringBuffer responseContent = new StringBuffer();
+//            	StringBuilder responseContent = new StringBuilder();
     	try {
-    		URL url = new URL(Earl);
-    		connection =(HttpURLConnection) url.openConnection();
-
+    		System.out.println("connecting");
+    		URL url = new URL(targetDomain+targetProduct);
+    		connection = (HttpURLConnection) url.openConnection();
+    		
     		// setup connection
-    		
     		connection.setRequestMethod("GET");
-    		connection.setConnectTimeout(5000);
-    		connection.setReadTimeout(5000);
+    		start = System.currentTimeMillis();
+    		connection.setConnectTimeout(timeOutPeriod);
+    		connection.setReadTimeout(timeOutPeriod);
     		status = connection.getResponseCode();
-    		
+    		data.setStatus(status);
+    		stop = System.currentTimeMillis();
+    		data.setLatency((stop-start));
     		if(status > 299) {
     			reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+    			while((line = reader.readLine()) != null ) {
+    				responseContent.append(line);
+    			}
+    			data.handleData(new Document(responseContent.toString()));
     			reader.close();
     			return NetStatus.getHttpStatus(status);
     		}else {
@@ -98,8 +115,8 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
     			while((line = reader.readLine()) != null ) {
     				responseContent.append(line);
     			}
+    			data.handleData(new Document(responseContent.toString()));
     			reader.close();
-    			System.out.println(responseContent.toString());
     			return NetStatus.getHttpStatus(status);
     		}
     		
@@ -113,10 +130,6 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
     		System.out.println(ioe.getMessage());
     		return NetStatus.CONNECTION_ERROR;    
     	}
+    	
     }
-
-   
-
- 
-    
 }

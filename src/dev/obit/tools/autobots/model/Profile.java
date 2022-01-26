@@ -25,7 +25,7 @@ public enum Profile {
     /**
      * UrlProfile's are PRE-configured API/Scrape profiles for different website's
      */
-    NOTEBOOKBILLIGER;
+    JSONPLACEHOLDER, NOTEBOOKBILLIGER;
     
 	public static String getDocType(Profile profile) {
 		switch(profile){
@@ -35,16 +35,18 @@ public enum Profile {
 		} 
 	}
 	
-    public static String getURL(Profile profile){
+    public static String getTargetDomain(Profile profile){
         
         switch(profile){
             case NOTEBOOKBILLIGER : 
-                return "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
-            default : return "https://www.notebooksbilliger.de/nvidia+geforce+rtx+3080+founders+edition";
+                return "https://www.notebooksbilliger.de/";
+            case JSONPLACEHOLDER :
+            	return "https://jsonplaceholder.typicode.com/";
+            default : return "https://jsonplaceholder.typicode.com/";
         } 
     }
     
-    public static String getTarget(Profile profile) {
+    public static String getContentType(Profile profile) {
         switch(profile){
 	    	case NOTEBOOKBILLIGER : 
 	            return "HTML";

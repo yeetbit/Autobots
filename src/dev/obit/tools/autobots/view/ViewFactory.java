@@ -52,6 +52,7 @@ public class ViewFactory {
     public ViewFactory(ServiceManager serviceManager) {
 		// TODO Auto-generated constructor stub
     	this.serviceManager = serviceManager;
+    	this.dataTargetFactory = new DataTargetFactory(serviceManager);
 	}
 
 	public void showMainWindow(){

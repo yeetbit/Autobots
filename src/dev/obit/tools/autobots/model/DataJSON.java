@@ -1,5 +1,7 @@
 package dev.obit.tools.autobots.model;
 
+import org.jsoup.nodes.Document;
+
 import dev.obit.tools.autobots.ServiceManager;
 
 public class DataJSON extends Data {
@@ -9,7 +11,7 @@ public class DataJSON extends Data {
 	}
 
 	@Override
-	public void dataExtraction(ServiceConfig config) {
+	public void handleData(Document result) {
 		// TODO Implement JSON dataExtraction
 		
 	}

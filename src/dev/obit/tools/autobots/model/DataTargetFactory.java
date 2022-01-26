@@ -5,6 +5,19 @@ import java.util.Map;
 
 import dev.obit.tools.autobots.ServiceManager;
 
+/**
+ * 
+ * @author obi
+ * <p>
+ * DataTargetFactory launches a {@code Data}(collecting-service) accordingly to the given Profile.
+ * {@code ServiceManager} is passed to the {@code Data}object. After creation of a {@code Data} instance,
+ * it will be referenced to {@code ServiceManager.ObservableList<Data, String>} by calling {@code addService(Data service)} method.
+ * </p>
+ *	
+ *	 
+ *
+ */
+
 public class DataTargetFactory {
 	ServiceManager serviceManager;
 	
@@ -13,6 +26,7 @@ public class DataTargetFactory {
 	}
 	
 	public void createNewService(ServiceConfig config) {
+		System.out.println("createNewService(), selected profile: "+config.getProfile());
 		Profile profile = config.getProfile();
 		if(Profile.getDocType(profile).equalsIgnoreCase("HTML")) {
 			setupHTMLService(config);
@@ -36,7 +50,9 @@ public class DataTargetFactory {
 	}
 
 	private void setupHTMLService(ServiceConfig config) {
+		System.out.println("setting up HTMLService");
 		activeServices.put(config.getServiceName(), new DataHTML(config, serviceManager));
+		System.out.println("HTMLService "+config.getServiceName()+" with config profile "+config.getProfile()+" stored in ActiveServices");
 		
 	}
 

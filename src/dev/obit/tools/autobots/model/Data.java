@@ -1,60 +1,94 @@
 package dev.obit.tools.autobots.model;
 
+import org.jsoup.nodes.Document;
+
 import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.services.RESTServiceClient;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-public abstract class Data extends TreeItem<String>  {
+public abstract class Data {
+	protected ServiceConfig config;
 	private ServiceManager serviceManager;
-
-	private String status;
-	private String condition;
-	private String latency;
-	private String delay;
-	private String other;
 	protected RESTServiceClient restClient;
+
+
+	// data
+	private StringProperty serviceName = new SimpleStringProperty();
+	private StringProperty condition = new SimpleStringProperty();
+	private IntegerProperty status = new SimpleIntegerProperty();
+	private LongProperty latency = new SimpleLongProperty();
+	private IntegerProperty delay = new SimpleIntegerProperty();
+	private StringProperty other = new SimpleStringProperty();
+	
+	@SuppressWarnings("unused")
+	private Data(){};
 	
 	public Data(ServiceConfig config, ServiceManager serviceManager) {
-		super(config.getServiceName());
 		this.serviceManager = serviceManager;
+		this.config = config;
+		this.serviceName = new SimpleStringProperty(config.getServiceName());
+		this.condition = new SimpleStringProperty();
+		this.status = new SimpleIntegerProperty();
+		this.latency = new SimpleLongProperty();
+		this.delay = new SimpleIntegerProperty(config.getConnectionDelay());
+		this.other = new SimpleStringProperty();
 		restClient = new RESTServiceClient(config, this);
-		dataExtraction(config);
-		buildService();
 		serviceManager.addService(this);
 	}
+	
 
-	private void buildService(){
-		this.getChildren().add(new TreeItem<String>(status));
-		this.getChildren().add(new TreeItem<String>(condition));
-		this.getChildren().add(new TreeItem<String>(latency));
-		this.getChildren().add(new TreeItem<String>(delay));
-		this.getChildren().add(new TreeItem<String>(other));	
+	public void setStatus(Integer status) {
+		this.status.set(status);
 	}
 	
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-
-	public void setLatency(String latency) {
-		this.latency = latency;
-	}
-
-	public void setDelay(String delay) {
-		this.delay = delay;
-	}
-
-	public void setOther(String other) {
-		this.other = other;
+		this.condition.set(condition);
 	}
 	
-	public abstract void dataExtraction(ServiceConfig config);
+	public void setLatency(Long latency) {
+		this.latency.set(latency);
+	}
+	
+	public void setDelay(Integer delay) {
+		this.delay.set(delay);
+	}
+	
+	public void setOther(String other) {
+		this.other.set(other);
+	}
+	
+	public StringProperty serviceNameProperty() {
+		return serviceName;
+	}
+
+	public StringProperty conditionProperty() {
+		return condition;
+	}
+
+	public IntegerProperty statusProperty() {
+		return status;
+	}
+
+	public LongProperty latencyProperty() {
+		return latency;
+	}
+
+	public IntegerProperty delayProperty() {
+		return delay;
+	}
+
+	public StringProperty otherProperty() {
+		return other;
+	}
+
+	public abstract void handleData(Document result);
+	
 	
 	
 	

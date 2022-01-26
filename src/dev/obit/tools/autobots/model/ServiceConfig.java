@@ -1,25 +1,27 @@
 package dev.obit.tools.autobots.model;
 
+import javafx.util.Duration;
+
 public class ServiceConfig {
 	
 	private Profile profile;
 	private String serviceName;
 	private String targetProduct;
-	private long connectionDelay;
-	private int timeOutInterval;
+	private int connectionDelay;
+	private int timeOutPeriod;
 	private float pricethreshold;
 	
 	private String userName;
 	private String passWord;
 	
-	public ServiceConfig(Profile profile, String serviceName, String targetProduct, long connectionDelay,
+	public ServiceConfig(Profile profile, String serviceName, String targetProduct, int connectionDelay,
 			int timeOutInterval, float pricethreshold, String userName, String passWord) {
 		super();
 		this.profile = profile;
 		this.serviceName = serviceName;
 		this.targetProduct = targetProduct;
 		this.connectionDelay = connectionDelay;
-		this.timeOutInterval = timeOutInterval;
+		this.timeOutPeriod = timeOutInterval;
 		this.pricethreshold = pricethreshold;
 		this.userName = userName;
 		this.passWord = passWord;
@@ -49,20 +51,20 @@ public class ServiceConfig {
 		this.targetProduct = targetProduct;
 	}
 
-	public long getConnectionDelay() {
+	public int getConnectionDelay() {
 		return connectionDelay;
 	}
 
-	public void setConnectionDelay(long connectionDelay) {
+	public void setConnectionDelay(int connectionDelay) {
 		this.connectionDelay = connectionDelay;
 	}
 
 	public int getTimeOutInterval() {
-		return timeOutInterval;
+		return timeOutPeriod;
 	}
 
 	public void setTimeOutInterval(int timeOutInterval) {
-		this.timeOutInterval = timeOutInterval;
+		this.timeOutPeriod = timeOutInterval;
 	}
 
 	public float getPricethreshold() {

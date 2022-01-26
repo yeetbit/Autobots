@@ -23,6 +23,7 @@ import dev.obit.tools.autobots.model.DataTargetFactory;
 import dev.obit.tools.autobots.model.Profile;
 import dev.obit.tools.autobots.model.ServiceConfig;
 import dev.obit.tools.autobots.view.ViewFactory;
+import dev.obit.tools.autobots.model.Data;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,9 +31,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -48,22 +51,40 @@ public class MainWindowController extends BaseController implements Initializabl
 
    
     @FXML
-    private AnchorPane RootPane;
-
-    @FXML
     private MenuItem aboutMenuButton;
 
     @FXML
-    private MenuItem closeMenuButton;
+    private MenuItem closewindow;
+
+    @FXML
+    private Menu edit;
 
     @FXML
     private MenuItem exitMenuButton;
 
     @FXML
-    private MenuItem newJobMenuButton1;
+    private MenuItem newJobMenuButton;
+    
+    @FXML
+    private TableColumn<Data, String> serviceCol;
+    
+    @FXML
+    private TableColumn<Data, String> conditionCol;
+    
+    @FXML
+    private TableColumn<Data, Integer> statusCol;
 
     @FXML
-    private TreeView<String> treeView;
+    private TableColumn<Data, Long> latencyCol;
+    
+    @FXML
+    private TableColumn<Data, Integer> delayCol;
+    
+    @FXML
+    private TableColumn<Data, String> otherCol;
+
+    @FXML
+    private TableView<Data> tableView;
     
     private ServiceManager serviceManager;
     private DataTargetFactory dataTargetFactory;
@@ -78,18 +99,26 @@ public class MainWindowController extends BaseController implements Initializabl
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	setupTreeView(serviceManager.getRoot());
+    	serviceCol.setCellValueFactory(new PropertyValueFactory<Data, String>("serviceName"));
+    	conditionCol.setCellValueFactory(new PropertyValueFactory<Data, String>("condition"));
+    	statusCol.setCellValueFactory(new PropertyValueFactory<Data, Integer>("status"));
+    	latencyCol.setCellValueFactory(new PropertyValueFactory<Data, Long>("latency"));
+    	delayCol.setCellValueFactory(new PropertyValueFactory<Data, Integer>("delay"));
+    	otherCol.setCellValueFactory(new PropertyValueFactory<Data, String>("other"));
+    	tableView.setItems(serviceManager.getServices());
+    	
+    	
     }    
 
         
     private void start(){
     	// Test config
     	dataTargetFactory.createNewService(new ServiceConfig(
-    			Profile.NOTEBOOKBILLIGER, 	// target profile
+    			Profile.JSONPLACEHOLDER, 	// target profile
     			"TestService",				// service name
-    			"",							// target product (after domain)
-    			1200L, 						// request interval
-    			5000, 						// connection timout
+    			"",					// target product (after domain)
+    			6, 							// request interval in seconds
+    			4000, 						// connection timeout
     			0, 							// price threshold
     			"username", 				// account username
     			"password"));				// account password
@@ -135,12 +164,6 @@ public class MainWindowController extends BaseController implements Initializabl
 
     }
     
-    private void setupTreeView(TreeItem<String> root) {
-    	treeView.setRoot(root);
-    	treeView.setShowRoot(false);
-    	
-    	
-    }
     
     private void createNewService() {
     	
