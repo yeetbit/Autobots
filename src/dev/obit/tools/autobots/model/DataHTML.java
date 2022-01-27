@@ -25,21 +25,21 @@ public class DataHTML extends Data {
 		
 	}
 	
-//	private void runService() {
-//		restClient.fetchData();
-//	}
-	
-	
 	private void runService() {
-		restClient.setPeriod(Duration.seconds(config.getConnectionDelay()));
-		System.out.println("starting service "+config.getServiceName());
-		restClient.start();
-		restClient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-			@Override
-			public void handle(WorkerStateEvent e) {
-			}
-		});
+		restClient.fetchData();
 	}
+	
+	
+//	private void runService() {
+//		restClient.setPeriod(Duration.seconds(config.getConnectionDelay()));
+//		System.out.println("starting service "+config.getServiceName());
+//		restClient.start();
+//		restClient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+//			@Override
+//			public void handle(WorkerStateEvent e) {
+//			}
+//		});
+//	}
 	
 	private void stopService() {
 		restClient.cancel();
@@ -47,14 +47,19 @@ public class DataHTML extends Data {
 
 	@Override
 	public void handleData(Document result) {
+		
 		System.out.println("Service result of: "+serviceNameProperty().get()
 				+"\n\tURL: "+Profile.getTargetDomain(config.getProfile())+config.getTargetProduct()
 				+"\n\tLatency: "+latencyProperty().get()
-				+"\n\tStatus: "+statusProperty().get()+" "+NetStatus.getHttpStatus(statusProperty().get())
-				+"\n\tData: "+ result+"\n");
-		Elements targetEnclosing = result.getElementsByClass("availability_widget");
+				+"\n\tStatus: "+statusProperty().get()+" "+NetStatus.getHttpStatus(statusProperty().get()));
+		
+		
+//		Element filter = result.getElementById("add-to-cart-form");
+//		Elements target = filter.getElementsByAttributeValue("input type", "hidden");
+//		System.out.println(target.toString()); 
+//		Elements targetEnclosing = result.getElementsByClass("availability_widget");
 //		Elements targetChildren = targetEnclosing.ch
-		targetEnclosing.forEach(el -> System.out.println(el));
+//		targetEnclosing.forEach(el -> System.out.println(el));
 		
 		
 	
