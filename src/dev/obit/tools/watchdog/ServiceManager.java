@@ -16,7 +16,7 @@ public class ServiceManager {
 
 	public ObservableList<Data> getServices() {
 		// TODO Auto-generated method stub
-		return null;
+		return services;
 	}
 
 }
