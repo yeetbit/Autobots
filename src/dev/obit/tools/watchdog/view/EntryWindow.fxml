@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -19,11 +20,11 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <GridPane hgap="5.0" prefHeight="383.0" prefWidth="504.0" vgap="5.0">
+                  <GridPane hgap="5.0" prefHeight="383.0" prefWidth="504.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="144.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="231.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="89.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="230.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="90.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -43,8 +44,8 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                      <children>
-                        <Label text="Target-website:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                        <ChoiceBox fx:id="targetWebsiteChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Target-domain:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="targetDomainChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -59,14 +60,19 @@
                         <Label text="Connection-delay:" GridPane.rowIndex="3" />
                         <Label text="Timeout-interval:" GridPane.rowIndex="4" />
                         <Label text="Price-threshold:" GridPane.rowIndex="5" />
-                        <Spinner fx:id="connectionDelaySpinner" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Spinner fx:id="TimeoutIntervalSpinner" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Spinner fx:id="delaySpinner" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Spinner fx:id="timeoutSpinner" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Spinner fx:id="priceThresholdSpinner" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label opacity="0.61" text="seconds" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                        <Label opacity="0.61" text="seconds" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                        <Label opacity="0.61" text="sec." GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                        <Label opacity="0.61" text="ms." GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin></Label>
                         <Label opacity="0.61" text="999.99" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                         <Label text="Name of service:" />
-                        <TextField fx:id="nameOfServiceField" GridPane.columnIndex="1" />
+                        <TextField fx:id="serviceNameField" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#saveEntry" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                        <Button mnemonicParsing="false" onAction="#cancelEntry" text="cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -80,7 +86,7 @@
                     <columnConstraints>
                       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="144.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="220.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="90.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -121,6 +127,8 @@
                         <Label fx:id="emailFieldErrorLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <Label fx:id="streetErrorLabel" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <Label fx:id="phoneNumberErrorLabel" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                        <Button mnemonicParsing="false" onAction="#saveEntry" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                        <Button mnemonicParsing="false" onAction="#cancelEntry" text="cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
                      </children>
                   </GridPane>
                </children></AnchorPane>
@@ -130,11 +138,11 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <GridPane hgap="5.0" prefHeight="383.0" prefWidth="504.0" vgap="5.0">
+                  <GridPane hgap="5.0" prefHeight="383.0" prefWidth="504.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="144.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="220.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="90.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -172,6 +180,8 @@
                         <TextField fx:id="countryField2" text="blank" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label text="blank" GridPane.rowIndex="8" />
                         <TextField fx:id="phoneNumberField2" text="blank" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Button mnemonicParsing="false" onAction="#saveEntry" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                        <Button mnemonicParsing="false" onAction="#cancelEntry" text="cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
                      </children>
                   </GridPane>
                </children>
