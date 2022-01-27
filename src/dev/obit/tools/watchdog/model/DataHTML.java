@@ -1,22 +1,17 @@
 package dev.obit.tools.watchdog.model;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import dev.obit.tools.watchdog.ServiceManager;
 import dev.obit.tools.watchdog.enums.NetStatus;
 import dev.obit.tools.watchdog.enums.Profile;
-import javafx.application.Platform;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
 public class DataHTML extends Data {
-	private Timer timer;
 
 	public DataHTML(ServiceConfig config, ServiceManager serviceManager) {
 		super(config, serviceManager);
@@ -25,34 +20,52 @@ public class DataHTML extends Data {
 		
 	}
 	
-	private void runService() {
-		restClient.fetchData();
-	}
-	
-	
 //	private void runService() {
-//		restClient.setPeriod(Duration.seconds(config.getConnectionDelay()));
-//		System.out.println("starting service "+config.getServiceName());
-//		restClient.start();
-//		restClient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-//			@Override
-//			public void handle(WorkerStateEvent e) {
-//			}
-//		});
+//		restClient.fetchData();
 //	}
+	
+	
+	private void runService() {
+		restClient.setPeriod(Duration.seconds(config.getConnectionDelay()));
+		System.out.println("starting service "+config.getServiceName());
+		restClient.start();
+                
+		restClient.setOnSucceeded(event -> {
+                    // TODO: implement onSucceeded 
+                });
+                restClient.setOnFailed(event -> {
+                    // TODO: implement onFailed
+                });
+                restClient.setOnCancelled(event -> {
+                    // TODO: implement onCancelled
+                });
+	}
 	
 	private void stopService() {
 		restClient.cancel();
 	}
+        
+        /**
+         * <p>
+         * handleData filters and selects the specific Element, by using the Profile.getScrapMap() LinkedHashMap.
+         * The Map contains all the configuration needed to scrape the data of the given domain.
+         * </p>
+         * @param result result of the restClient
+         */
 
 	@Override
 	public void handleData(Document result) {
-		
-		System.out.println("Service result of: "+serviceNameProperty().get()
-				+"\n\tURL: "+Profile.getTargetDomain(config.getProfile())+config.getTargetProduct()
-				+"\n\tLatency: "+latencyProperty().get()
-				+"\n\tStatus: "+statusProperty().get()+" "+NetStatus.getHttpStatus(statusProperty().get()));
-		
+            // TODO: implement filtering based on given profile
+		setCondition("-not implemented-");
+                setOther("-not implemented-");
+                
+            System.out.println("Service result of: "+serviceNameProperty().get()
+                +"\n\tURL: "+Profile.getTargetDomain(config.getProfile())+config.getTargetProduct()
+                +"\n\tLatency: "+latencyProperty().get()
+                +"\n\tStatus: "+statusProperty().get()+" "+NetStatus.getHttpStatus(statusProperty().get())
+                +"\n\tResponse: "+ result.toString());
+                
+
 		
 //		Element filter = result.getElementById("add-to-cart-form");
 //		Elements target = filter.getElementsByAttributeValue("input type", "hidden");
