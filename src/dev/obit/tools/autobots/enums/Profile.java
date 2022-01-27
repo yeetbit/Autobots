@@ -17,7 +17,8 @@
 package dev.obit.tools.autobots.enums;
 
 import java.util.Map;
-import java.util.HashMap;;
+import java.util.HashMap;
+import java.util.LinkedHashMap;;
 
 /**
  *
@@ -48,23 +49,43 @@ public enum Profile {
             case AZERTY :
             	return "";
             case ALTERNATE :
-            	return "";
+            	return "https://www.alternate.nl/";
             default : return "https://jsonplaceholder.typicode.com/";
         } 
     }
     
     public static Map<String, String> getScrapeMap(Profile profile) {
-        switch(profile){
-	    	case JSONPLACEHOLDER : 
-	            return new HashMap<>();
-	    	case NOTEBOOKBILLIGER : 
-	            return new HashMap<>();
-	    	case AZERTY : 
-	            return new HashMap<>();
-	    	case ALTERNATE : 
-	            return new HashMap<>();
-	        default : return null;
-        } 
-    }
-    
+    	if(profile == JSONPLACEHOLDER) {
+    		
+    		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    		map.put(null, null);
+            return map;
+            
+    	}else if(profile == NOTEBOOKBILLIGER) {
+    		
+    		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    		map.put(null, null);
+    		return map;
+    		
+    	}else if(profile == AZERTY) {
+    		
+    		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    		map.put(null, null);
+    		return map;
+    		
+    	}else if(profile == ALTERNATE) {
+    		
+    		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    		map.put(null, null);
+    		return map;
+    		
+    	}else {
+    		
+    		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+    		map.put(null, null);
+    		return map;
+    	}
+    } 
 }
+    
+

@@ -10,7 +10,7 @@ public enum NetStatus {
 	SERVER_ERROR, INTERNAL_SERVER_ERROR, BAD_GATEWAY, SERVICE_UNAVAILABLE, GATEWAY_TIMEOUT, UNKNOWN_ERROR;
 	
 	public static NetStatus getHttpStatus(int statusCode) {
-		if(statusCode<200) {
+		if((statusCode >0) && (statusCode<200)) {
 			return NetStatus.INFORMATIONAL_RESPONSE;
 		}else if((statusCode >=200) && (statusCode<300)) {
 			switch(statusCode) {
