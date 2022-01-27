@@ -1,8 +1,8 @@
-package dev.obit.tools.autobots.model;
+package dev.obit.tools.watchdog.model;
 
 import org.jsoup.nodes.Document;
 
-import dev.obit.tools.autobots.ServiceManager;
+import dev.obit.tools.watchdog.ServiceManager;
 
 public class DataJSON extends Data {
 

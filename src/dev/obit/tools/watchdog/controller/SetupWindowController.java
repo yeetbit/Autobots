@@ -14,11 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.autobots.controller;
+package dev.obit.tools.watchdog.controller;
 
-import dev.obit.tools.autobots.ServiceManager;
-import dev.obit.tools.autobots.model.DataTargetFactory;
-import dev.obit.tools.autobots.view.ViewFactory;
+import dev.obit.tools.watchdog.ServiceManager;
+import dev.obit.tools.watchdog.model.DataTargetFactory;
+import dev.obit.tools.watchdog.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 

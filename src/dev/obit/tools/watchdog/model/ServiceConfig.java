@@ -1,6 +1,6 @@
-package dev.obit.tools.autobots.model;
+package dev.obit.tools.watchdog.model;
 
-import dev.obit.tools.autobots.enums.Profile;
+import dev.obit.tools.watchdog.enums.Profile;
 import javafx.util.Duration;
 
 public class ServiceConfig {

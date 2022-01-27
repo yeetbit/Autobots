@@ -4,3 +4,7 @@ bin
 .classpath
 build.fxbuild
 dist
+build.xml
+manifest.mf
+nbproject
+lib

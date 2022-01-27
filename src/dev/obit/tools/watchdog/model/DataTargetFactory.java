@@ -1,10 +1,10 @@
-package dev.obit.tools.autobots.model;
+package dev.obit.tools.watchdog.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import dev.obit.tools.autobots.ServiceManager;
-import dev.obit.tools.autobots.enums.Profile;
+import dev.obit.tools.watchdog.ServiceManager;
+import dev.obit.tools.watchdog.enums.Profile;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package dev.obit.tools.autobots.model;
+package dev.obit.tools.watchdog.model;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -7,9 +7,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import dev.obit.tools.autobots.ServiceManager;
-import dev.obit.tools.autobots.enums.NetStatus;
-import dev.obit.tools.autobots.enums.Profile;
+import dev.obit.tools.watchdog.ServiceManager;
+import dev.obit.tools.watchdog.enums.NetStatus;
+import dev.obit.tools.watchdog.enums.Profile;
 import javafx.application.Platform;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;

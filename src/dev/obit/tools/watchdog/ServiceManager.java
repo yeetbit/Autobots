@@ -1,6 +1,6 @@
-package dev.obit.tools.autobots;
+package dev.obit.tools.watchdog;
 
-import dev.obit.tools.autobots.model.Data;
+import dev.obit.tools.watchdog.model.Data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

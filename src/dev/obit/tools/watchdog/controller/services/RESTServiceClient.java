@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.autobots.controller.services;
+package dev.obit.tools.watchdog.controller.services;
 
-import dev.obit.tools.autobots.enums.NetStatus;
-import dev.obit.tools.autobots.enums.Profile;
-import dev.obit.tools.autobots.model.Data;
-import dev.obit.tools.autobots.model.ServiceConfig;
+import dev.obit.tools.watchdog.enums.NetStatus;
+import dev.obit.tools.watchdog.enums.Profile;
+import dev.obit.tools.watchdog.model.Data;
+import dev.obit.tools.watchdog.model.ServiceConfig;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package dev.obit.tools.autobots.enums;
+package dev.obit.tools.watchdog.enums;
 
 public enum NetStatus {
 	

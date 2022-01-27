@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.autobots.enums;
+package dev.obit.tools.watchdog.enums;
 
 import java.util.Map;
 import java.util.HashMap;

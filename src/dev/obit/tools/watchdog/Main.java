@@ -15,12 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package dev.obit.tools.autobots;
+package dev.obit.tools.watchdog;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import dev.obit.tools.autobots.model.DataTargetFactory;
-import dev.obit.tools.autobots.view.ViewFactory;
+import dev.obit.tools.watchdog.model.DataTargetFactory;
+import dev.obit.tools.watchdog.view.ViewFactory;
 
 
 /**

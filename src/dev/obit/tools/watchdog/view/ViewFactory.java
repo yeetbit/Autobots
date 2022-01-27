@@ -14,14 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package dev.obit.tools.autobots.view;
+package dev.obit.tools.watchdog.view;
 
-import dev.obit.tools.autobots.Environment;
-import dev.obit.tools.autobots.ServiceManager;
-import dev.obit.tools.autobots.controller.BaseController;
-import dev.obit.tools.autobots.controller.SetupWindowController;
-import dev.obit.tools.autobots.model.DataTargetFactory;
-import dev.obit.tools.autobots.controller.MainWindowController;
+import dev.obit.tools.watchdog.Environment;
+import dev.obit.tools.watchdog.ServiceManager;
+import dev.obit.tools.watchdog.controller.BaseController;
+import dev.obit.tools.watchdog.controller.SetupWindowController;
+import dev.obit.tools.watchdog.model.DataTargetFactory;
+import dev.obit.tools.watchdog.controller.MainWindowController;
 
 import java.io.IOException;
 import java.util.HashMap;

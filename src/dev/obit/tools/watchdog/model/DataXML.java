@@ -1,9 +1,9 @@
-package dev.obit.tools.autobots.model;
+package dev.obit.tools.watchdog.model;
 
 import org.jsoup.nodes.Document;
 
-import dev.obit.tools.autobots.ServiceManager;
-import dev.obit.tools.autobots.controller.services.RESTServiceClient;
+import dev.obit.tools.watchdog.ServiceManager;
+import dev.obit.tools.watchdog.controller.services.RESTServiceClient;
 
 public class DataXML extends Data{
 
