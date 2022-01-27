@@ -17,10 +17,14 @@
 package dev.obit.tools.watchdog.controller;
 
 import dev.obit.tools.watchdog.ServiceManager;
+import dev.obit.tools.watchdog.enums.Profile;
 import dev.obit.tools.watchdog.model.DataTargetFactory;
+import dev.obit.tools.watchdog.model.ServiceConfig;
 import dev.obit.tools.watchdog.view.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +32,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 
@@ -38,13 +43,7 @@ import javafx.scene.control.TextField;
  */
 public class SetupWindowController extends BaseController implements Initializable{
 
-    @FXML
-    private Spinner<?> TimeoutIntervalSpinner;
-
-    @FXML
-    private Spinner<?> connectionDelaySpinner;
-
-    @FXML
+ @FXML
     private TextField countryField;
 
     @FXML
@@ -90,7 +89,7 @@ public class SetupWindowController extends BaseController implements Initializab
     private TextField phoneNumberField2;
 
     @FXML
-    private Spinner<?> priceThresholdSpinner;
+    private TextField serviceNameField;
 
     @FXML
     private Label streetErrorLabel;
@@ -108,10 +107,10 @@ public class SetupWindowController extends BaseController implements Initializab
     private TextField suiteField2;
 
     @FXML
-    private TextField targetProductField;
+    private ChoiceBox<Profile> targetDomainChoiceBox;
 
     @FXML
-    private ChoiceBox<?> targetWebsiteChoiceBox;
+    private TextField targetProductField;
 
     @FXML
     private TextField userNameTextField;
@@ -122,20 +121,73 @@ public class SetupWindowController extends BaseController implements Initializab
     @FXML
     private TextField zipcodeField2;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	
-    }    
+    @FXML
+    private Spinner<Integer> delaySpinner;
+
+    @FXML
+    private Spinner<Float> priceThresholdSpinner;
+    
+    @FXML
+    private Spinner<Integer> timeoutSpinner;
+
+    private DataTargetFactory dataTargetFactory;
+    private ServiceManager serviceManager;
+    private ViewFactory viewfactory;
 
     public SetupWindowController(ServiceManager serviceManager, ViewFactory viewFactory, DataTargetFactory dataTargetFactory, String FXMLName) {
         super(serviceManager, viewFactory, dataTargetFactory, FXMLName);
+        this.dataTargetFactory = dataTargetFactory;
+        this.serviceManager = serviceManager;
+        this.viewFactory = viewFactory;
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        setupTimeoutSpinner();
+        setupPriceThresholdSpinner();
+        setupDelaySpinner();
+        setuptargetDomainChoiceBox();
+        targetProductField.setText("ASUS/TUF-Gaming-GeForce-RTX-3080-V2-LHR-grafische-kaart/html/product/1773498");
+    	
+    }    
     
-    
-    
+        @FXML
+    void cancelEntry(ActionEvent event) {
+
+    }
+
+    @FXML
+    void saveEntry(ActionEvent event) {
+        dataTargetFactory.createNewService(new ServiceConfig(
+                targetDomainChoiceBox.getValue(),
+                serviceNameField.getText(),
+                targetProductField.getText(),
+                delaySpinner.getValue(),
+                timeoutSpinner.getValue(),
+                0,
+                userNameTextField.getText(),
+                passwordField.getText()
+        ));
+        viewFactory.closeStage(stageKey);
+    }
+
+    private void setupTimeoutSpinner() {
+        timeoutSpinner.setEditable(true);
+        timeoutSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1000, 10000));
+    }
+
+    private void setupPriceThresholdSpinner() {
+    }
+
+    private void setupDelaySpinner() {
+        delaySpinner.setEditable(true);
+        delaySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 600));
+    }
+
+    private void setuptargetDomainChoiceBox() {
+        targetDomainChoiceBox.setItems(FXCollections.observableArrayList(Profile.values()));
+        
+    }
     
     
 }
