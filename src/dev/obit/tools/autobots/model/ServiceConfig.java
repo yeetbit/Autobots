@@ -1,5 +1,6 @@
 package dev.obit.tools.autobots.model;
 
+import dev.obit.tools.autobots.enums.Profile;
 import javafx.util.Duration;
 
 public class ServiceConfig {
