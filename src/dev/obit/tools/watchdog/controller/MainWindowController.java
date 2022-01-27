@@ -16,9 +16,7 @@
  */
 package dev.obit.tools.watchdog.controller;
 
-import dev.obit.tools.watchdog.Environment;
 import dev.obit.tools.watchdog.ServiceManager;
-import dev.obit.tools.watchdog.controller.services.RESTServiceClient;
 import dev.obit.tools.watchdog.enums.Profile;
 import dev.obit.tools.watchdog.model.DataTargetFactory;
 import dev.obit.tools.watchdog.model.ServiceConfig;
@@ -27,7 +25,6 @@ import dev.obit.tools.watchdog.model.Data;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,9 +35,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -96,18 +91,18 @@ public class MainWindowController extends BaseController implements Initializabl
     }
     private Stage stage;
     private boolean hasSystemExit = true;
-    private String nbbTestProdect = "nvidia+geforce+rtx+3080+founders+edition";
-    private String alternateTestProduct = "ASUS/TUF-Gaming-GeForce-RTX-3080-V2-LHR-grafische-kaart/html/product/1773498";
+    private final String nbbTestProdect = "nvidia+geforce+rtx+3080+founders+edition";
+    private final String alternateTestProduct = "ASUS/TUF-Gaming-GeForce-RTX-3080-V2-LHR-grafische-kaart/html/product/1773498";
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	serviceCol.setCellValueFactory(new PropertyValueFactory<Data, String>("serviceName"));
-    	conditionCol.setCellValueFactory(new PropertyValueFactory<Data, String>("condition"));
-    	statusCol.setCellValueFactory(new PropertyValueFactory<Data, Integer>("status"));
-    	latencyCol.setCellValueFactory(new PropertyValueFactory<Data, Long>("latency"));
-    	delayCol.setCellValueFactory(new PropertyValueFactory<Data, Integer>("delay"));
-    	otherCol.setCellValueFactory(new PropertyValueFactory<Data, String>("other"));
+    	serviceCol.setCellValueFactory(new PropertyValueFactory<>("serviceName"));
+    	conditionCol.setCellValueFactory(new PropertyValueFactory<>("condition"));
+    	statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+    	latencyCol.setCellValueFactory(new PropertyValueFactory<>("latency"));
+    	delayCol.setCellValueFactory(new PropertyValueFactory<>("delay"));
+    	otherCol.setCellValueFactory(new PropertyValueFactory<>("other"));
     	tableView.setItems(serviceManager.getServices());
     	
     	
@@ -136,17 +131,17 @@ public class MainWindowController extends BaseController implements Initializabl
     @FXML
     
     void newJob(ActionEvent event) {
-//		viewFactory.showSetupWindow();
+		viewFactory.showSetupWindow();
     	// Test config
-    	dataTargetFactory.createNewService(new ServiceConfig(
-    			Profile.JSONPLACEHOLDER,		 	// target profile
-    			"TestService",				// service name
-    			"",		// target product (after domain)
-    			6, 							// request interval in seconds
-    			4000, 						// connection timeout
-    			0, 							// price threshold
-    			"username", 				// account username
-    			"password"));				// account password
+//    	dataTargetFactory.createNewService(new ServiceConfig(
+//    			Profile.JSONPLACEHOLDER,		 	// target profile
+//    			"TestService",				// service name
+//    			"",		// target product (after domain)
+//    			6, 							// request interval in seconds
+//    			4000, 						// connection timeout
+//    			0, 							// price threshold
+//    			"username", 				// account username
+//    			"password"));				// account password
 
     }
     
