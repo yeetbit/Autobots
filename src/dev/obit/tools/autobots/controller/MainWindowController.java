@@ -96,6 +96,9 @@ public class MainWindowController extends BaseController implements Initializabl
     }
     private Stage stage;
     private boolean hasSystemExit = true;
+    private String nbbTestProdect = "nvidia+geforce+rtx+3080+founders+edition";
+    private String alternateTestProduct = "ASUS/TUF-Gaming-GeForce-RTX-3080-V2-LHR-grafische-kaart/html/product/1773498";
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,23 +113,8 @@ public class MainWindowController extends BaseController implements Initializabl
     	
     }    
 
-        
-    private void start(){
-    	// Test config
-    	dataTargetFactory.createNewService(new ServiceConfig(
-    			Profile.NOTEBOOKBILLIGER, 	// target profile
-    			"TestService",				// service name
-"nvidia+geforce+rtx+3080+founders+edition",	// target product (after domain)
-    			6, 							// request interval in seconds
-    			4000, 						// connection timeout
-    			0, 							// price threshold
-    			"username", 				// account username
-    			"password"));				// account password
-    }
-    
     @FXML
     void aboutButton(ActionEvent event) {
-    	
 
     }
 
@@ -149,7 +137,16 @@ public class MainWindowController extends BaseController implements Initializabl
     
     void newJob(ActionEvent event) {
 //		viewFactory.showSetupWindow();
-    	start();
+    	// Test config
+    	dataTargetFactory.createNewService(new ServiceConfig(
+    			Profile.JSONPLACEHOLDER,		 	// target profile
+    			"TestService",				// service name
+    			"",		// target product (after domain)
+    			6, 							// request interval in seconds
+    			4000, 						// connection timeout
+    			0, 							// price threshold
+    			"username", 				// account username
+    			"password"));				// account password
 
     }
     
@@ -163,10 +160,4 @@ public class MainWindowController extends BaseController implements Initializabl
     void selectItemFocus(MouseEvent event) {
 
     }
-    
-    
-    private void createNewService() {
-    	
-    }
-    
-}
+}    
