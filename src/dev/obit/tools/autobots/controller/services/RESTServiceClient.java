@@ -93,6 +93,8 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
     				.timeout(timeOutPeriod)
     				.referrer("http://google.com")
     				.execute();
+    		stop = System.currentTimeMillis();
+    		data.setLatency((stop-start));
     		data.handleData(response.parse());
     		data.setStatus(response.statusCode());
     	
