@@ -16,13 +16,15 @@
  */
 package dev.obit.tools.autobots.controller.services;
 
-import dev.obit.tools.autobots.controller.NetStatus;
+import dev.obit.tools.autobots.enums.NetStatus;
+import dev.obit.tools.autobots.enums.Profile;
 import dev.obit.tools.autobots.model.Data;
-import dev.obit.tools.autobots.model.Profile;
 import dev.obit.tools.autobots.model.ServiceConfig;
 
 import java.util.ArrayList;
 
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
@@ -81,44 +83,20 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
     }
     
     public NetStatus fetchData() {
-    	System.out.println("init connection to: "+targetDomain+targetProduct);
-    	HttpURLConnection connection;
-    	BufferedReader reader;
-    	String line;
-    	int status;
-    	StringBuffer responseContent = new StringBuffer();
-//            	StringBuilder responseContent = new StringBuilder();
+    	Connection.Response response;
+    	
     	try {
-    		System.out.println("connecting");
-    		URL url = new URL(targetDomain+targetProduct);
-    		connection = (HttpURLConnection) url.openConnection();
-    		
-    		// setup connection
-    		connection.setRequestMethod("GET");
+ 
     		start = System.currentTimeMillis();
-    		connection.setConnectTimeout(timeOutPeriod);
-    		connection.setReadTimeout(timeOutPeriod);
-    		status = connection.getResponseCode();
-    		data.setStatus(status);
-    		stop = System.currentTimeMillis();
-    		data.setLatency((stop-start));
-    		if(status > 299) {
-    			reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-    			while((line = reader.readLine()) != null ) {
-    				responseContent.append(line);
-    			}
-    			data.handleData(new Document(responseContent.toString()));
-    			reader.close();
-    			return NetStatus.getHttpStatus(status);
-    		}else {
-    			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-    			while((line = reader.readLine()) != null ) {
-    				responseContent.append(line);
-    			}
-    			data.handleData(new Document(responseContent.toString()));
-    			reader.close();
-    			return NetStatus.getHttpStatus(status);
-    		}
+    		response = Jsoup.connect(targetDomain+targetProduct)
+    				.userAgent("Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0")
+    				.timeout(timeOutPeriod)
+    				.referrer("http://google.com")
+    				.execute();
+    		data.handleData(response.parse());
+    		data.setStatus(response.statusCode());
+    	
+    		return NetStatus.getHttpStatus(response.statusCode());
     		
     	}catch(MalformedURLException urle) {
     		System.out.println(urle.getMessage());
