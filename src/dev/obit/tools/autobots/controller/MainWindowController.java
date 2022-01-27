@@ -19,8 +19,8 @@ package dev.obit.tools.autobots.controller;
 import dev.obit.tools.autobots.Environment;
 import dev.obit.tools.autobots.ServiceManager;
 import dev.obit.tools.autobots.controller.services.RESTServiceClient;
+import dev.obit.tools.autobots.enums.Profile;
 import dev.obit.tools.autobots.model.DataTargetFactory;
-import dev.obit.tools.autobots.model.Profile;
 import dev.obit.tools.autobots.model.ServiceConfig;
 import dev.obit.tools.autobots.view.ViewFactory;
 import dev.obit.tools.autobots.model.Data;
@@ -114,9 +114,9 @@ public class MainWindowController extends BaseController implements Initializabl
     private void start(){
     	// Test config
     	dataTargetFactory.createNewService(new ServiceConfig(
-    			Profile.JSONPLACEHOLDER, 	// target profile
+    			Profile.NOTEBOOKBILLIGER, 	// target profile
     			"TestService",				// service name
-    			"",					// target product (after domain)
+"nvidia+geforce+rtx+3080+founders+edition",	// target product (after domain)
     			6, 							// request interval in seconds
     			4000, 						// connection timeout
     			0, 							// price threshold
