@@ -19,9 +19,7 @@ package dev.obit.tools.watchdog;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import dev.obit.tools.watchdog.model.DataTargetFactory;
 import dev.obit.tools.watchdog.view.ViewFactory;
-
 
 /**
  *
@@ -29,26 +27,24 @@ import dev.obit.tools.watchdog.view.ViewFactory;
  */
 public class Main extends Application {
 
-    public static void main(String[] args) {
-    	launch(args);
-    }
-
+	public static void main(String[] args) {
+		launch(args);
+	}
 
 	@Override
-    public void start(Stage stage) throws Exception {
+	public void start(Stage stage) throws Exception {
 		ViewFactory viewFactory = new ViewFactory(new ServiceManager());
-		
+
 		Environment.setEnvironment(System.getProperty("os.name"));
-		if(Environment.getEnvironment()!=null) {
+		if (Environment.getEnvironment() != null) {
 			viewFactory.showMainWindow();
-			
-		}else {
+
+		} else {
 			// TODO: Create ChoiseDialogue te pick the correct OS
-			
+			// for linking the correct libraries to the application
+
 		}
-        
-        
-    }
-    
+
+	}
 
 }

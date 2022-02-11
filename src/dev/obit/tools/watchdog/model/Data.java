@@ -39,7 +39,7 @@ public abstract class Data {
 		this.delay = new SimpleIntegerProperty(config.getConnectionDelay());
 		this.other = new SimpleStringProperty();
 		restClient = new RESTServiceClient(config, this);
-		serviceManager.addService(this);
+		serviceManager.addService(this.serviceName.toString(), this);
 	}
 	
 

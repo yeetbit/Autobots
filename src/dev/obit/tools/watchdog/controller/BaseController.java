@@ -27,6 +27,8 @@ import dev.obit.tools.watchdog.view.ViewFactory;
 public abstract class BaseController {
     
     protected ViewFactory viewFactory;
+    protected DataTargetFactory dataTargetFactory;
+    protected ServiceManager serviceManager;
     protected String FXMLName;
     protected String stageKey;
 
