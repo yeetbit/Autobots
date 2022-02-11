@@ -39,15 +39,13 @@ import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
 import javafx.util.Duration;
 
-
 /**
  *
  * @author obi
  */
 //public class RESTServiceClient {
 
-	
-public class RESTServiceClient extends ScheduledService<NetStatus>{
+public class RESTServiceClient extends ScheduledService<NetStatus> {
 
 	private String targetDomain;
 	private Profile profile;
@@ -58,8 +56,7 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
 	private Long stop;
 	private ServiceConfig config;
 	private Data data;
-	
-	
+
 	public RESTServiceClient(ServiceConfig config, Data data) {
 		this.data = data;
 		this.config = config;
@@ -68,50 +65,46 @@ public class RESTServiceClient extends ScheduledService<NetStatus>{
 		this.targetProduct = config.getTargetProduct();
 		this.connectionDelay = config.getConnectionDelay();
 		this.timeOutPeriod = config.getTimeOutInterval();
-		
+
 	}
-    
-    
-    
-    @Override
-    protected Task<NetStatus> createTask() {
-        return new Task<NetStatus>() {
-            protected NetStatus call() {
-            	return fetchData();
-            }
-        };
-    }
-    
-    public NetStatus fetchData() {
-    	Connection.Response response;
-    	
-    	try {
- 
-    		start = System.currentTimeMillis();
+
+	@Override
+	protected Task<NetStatus> createTask() {
+		return new Task<NetStatus>() {
+			protected NetStatus call() {
+				return fetchData();
+			}
+		};
+	}
+
+	public NetStatus fetchData() {
+		Connection.Response response;
+
+		try {
+
+			start = System.currentTimeMillis();
 //    		response = Jsoup.connect(targetDomain+targetProduct)
 //      				.execute();
-                response = Jsoup.connect(targetDomain+targetProduct)
-    				.userAgent("Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0")
-    				.timeout(timeOutPeriod)
-    				.referrer("http://google.com")
-    				.execute();
-    		stop = System.currentTimeMillis();
-    		data.setLatency((stop-start));
-    		data.handleData(response.parse());
-    		data.setStatus(response.statusCode());
-    	
-    		return NetStatus.getHttpStatus(response.statusCode());
-    		
-    	}catch(MalformedURLException urle) {
-    		System.out.println(urle.getMessage());
-    		return NetStatus.MALFORMED_URL;
-    	}catch(SocketTimeoutException ste) {
-    		System.out.println(ste.getMessage());
-    		return NetStatus.TIMEOUT;
-    	}catch(IOException ioe) {
-    		System.out.println(ioe.getMessage());
-    		return NetStatus.CONNECTION_ERROR;    
-    	}
-    	
-    }
+			response = Jsoup.connect(targetDomain + targetProduct)
+					.userAgent("Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0")
+					.timeout(timeOutPeriod).referrer("http://google.com").execute();
+			stop = System.currentTimeMillis();
+			data.setLatency((stop - start));
+			data.handleData(response.parse());
+			data.setStatus(response.statusCode());
+
+			return NetStatus.getHttpStatus(response.statusCode());
+
+		} catch (MalformedURLException urle) {
+			System.out.println(urle.getMessage());
+			return NetStatus.MALFORMED_URL;
+		} catch (SocketTimeoutException ste) {
+			System.out.println(ste.getMessage());
+			return NetStatus.TIMEOUT;
+		} catch (IOException ioe) {
+			System.out.println(ioe.getMessage());
+			return NetStatus.CONNECTION_ERROR;
+		}
+
+	}
 }
