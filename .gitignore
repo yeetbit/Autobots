@@ -1,11 +1,10 @@
 bin
 .project
 .settings
-.classpath
-build.fxbuild
+.fxbuild
 dist
 build.xml
 manifest.mf
 nbproject
-lib
+
 /build/
