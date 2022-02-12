@@ -27,6 +27,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -45,6 +48,7 @@ public class ViewFactory {
 	private boolean mainWindowInitialized = false;
 	private ServiceManager serviceManager;
 	private DataTargetFactory dataTargetFactory;
+	private Logger logger = LoggerFactory.getLogger(ViewFactory.class);
 
 	public ViewFactory(ServiceManager serviceManager) {
 		// TODO Auto-generated constructor stub
@@ -53,10 +57,14 @@ public class ViewFactory {
 	}
 
 	public void showMainWindow() {
-		BaseController controller = new MainWindowController(serviceManager, this, dataTargetFactory,
-				"MainWindow.fxml");
-		initStage(controller, "MAINWINDOW", true);
-		mainWindowInitialized = true;
+		if (!activeStages.containsKey("MAINWINDOW")) {
+			BaseController controller = new MainWindowController(serviceManager, this, dataTargetFactory,
+					"MainWindow.fxml");
+			initStage(controller, "MAINWINDOW", true);
+			mainWindowInitialized = true;
+		} else {
+			logger.info("trying to open main window while setup window is already open");
+		}
 	}
 
 	public void showSetupWindow() {
@@ -65,7 +73,7 @@ public class ViewFactory {
 					"EntryWindow.fxml");
 			initStage(controller, "SETUPWINDOW", false);
 		} else {
-			System.out.println("setup window is already open");
+			logger.info("trying to open setup window while setup window is already open");
 		}
 	}
 
@@ -93,7 +101,7 @@ public class ViewFactory {
 			controller.setStageKey(stageKey);
 			activeStages.put(stageKey, stage);
 		} catch (IOException ioe) {
-			System.out.println(
+			logger.error(
 					"Something went wrong during init: " + ANSI_GREEN + controller.getClass().toString() + ANSI_RESET);
 			ioe.printStackTrace();
 			return;
@@ -103,7 +111,7 @@ public class ViewFactory {
 	public void closeStage(String stageKey) {
 		activeStages.get(stageKey).close();
 		activeStages.remove(stageKey);
-		System.out.println(stageKey + " succesfully closed");
+		logger.info(stageKey + " succesfully closed");
 	}
 
 	public Stage getStage(String stageKey) {

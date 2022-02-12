@@ -3,6 +3,9 @@ package dev.obit.watchdog.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dev.obit.watchdog.ServiceManager;
 import dev.obit.watchdog.enums.Profile;
 
@@ -17,20 +20,18 @@ import dev.obit.watchdog.enums.Profile;
  *         {@code ServiceManager.ObservableList<Data, String>} by calling
  *         {@code addService(Data service)} method.
  *         </p>
- * 
- * 
- *
  */
 
 public class DataTargetFactory {
 	ServiceManager serviceManager;
+	private Logger logger = LoggerFactory.getLogger(DataTargetFactory.class);
 
 	public DataTargetFactory(ServiceManager serviceManager) {
 		this.serviceManager = serviceManager;
 	}
 
 	public void createNewService(ServiceConfig config) {
-		System.out.println("createNewService(), selected profile: " + config.getProfile());
+		logger.debug("createNewService(), selected profile: " + config.getProfile());
 		Profile profile = config.getProfile();
 		if (Profile.getDocType(profile).equalsIgnoreCase("HTML")) {
 			setupHTMLService(config);
@@ -45,18 +46,18 @@ public class DataTargetFactory {
 
 	private void setupJSONService(ServiceConfig config) {
 		// TODO: Implement JSONService
-		System.out.println("JSONService not implemented yet");
+		logger.debug("JSONService not implemented yet");
 	}
 
 	private void setupXMLService(ServiceConfig config) {
 		// TODO: Implement XMLService
-		System.out.println("XMLService not implemented yet");
+		logger.debug("XMLService not implemented yet");
 	}
 
 	private void setupHTMLService(ServiceConfig config) {
-		System.out.println("setting up HTMLService");
+		logger.debug("setting up HTMLService");
 		serviceManager.addService(config.getServiceName(), new DataHTML(config, serviceManager));
-		System.out.println("HTMLService " + config.getServiceName() + " with config profile " + config.getProfile()
+		logger.debug("HTMLService " + config.getServiceName() + " with config profile " + config.getProfile()
 				+ " stored in ActiveServices");
 
 	}

@@ -42,117 +42,106 @@ import javafx.stage.Stage;
  *
  * @author obi
  */
-public class MainWindowController extends BaseController implements Initializable  {
+public class MainWindowController extends BaseController implements Initializable {
 
-   
-    @FXML
-    private MenuItem aboutMenuButton;
+	@FXML
+	private MenuItem aboutMenuButton;
 
-    @FXML
-    private MenuItem closewindow;
+	@FXML
+	private MenuItem closewindow;
 
-    @FXML
-    private Menu edit;
+	@FXML
+	private Menu edit;
 
-    @FXML
-    private MenuItem exitMenuButton;
+	@FXML
+	private MenuItem exitMenuButton;
 
-    @FXML
-    private MenuItem newJobMenuButton;
-    
-    @FXML
-    private TableColumn<Data, String> serviceCol;
-    
-    @FXML
-    private TableColumn<Data, String> conditionCol;
-    
-    @FXML
-    private TableColumn<Data, Integer> statusCol;
+	@FXML
+	private MenuItem newJobMenuButton;
 
-    @FXML
-    private TableColumn<Data, Long> latencyCol;
-    
-    @FXML
-    private TableColumn<Data, Integer> delayCol;
-    
-    @FXML
-    private TableColumn<Data, String> otherCol;
+	@FXML
+	private TableColumn<Data, String> serviceCol;
 
-    @FXML
-    private TableView<Data> tableView;
-    
-    private ServiceManager serviceManager;
-    private DataTargetFactory dataTargetFactory;
-    
-    public MainWindowController(ServiceManager serviceManager, ViewFactory viewFactory, DataTargetFactory dataTargetFactory, String FXMLName) {
-    	super(serviceManager, viewFactory, dataTargetFactory, FXMLName);
-    	this.serviceManager = serviceManager;
-    	this.dataTargetFactory = dataTargetFactory;
-    }
-    private Stage stage;
-    private boolean hasSystemExit = true;
-    private final String nbbTestProdect = "nvidia+geforce+rtx+3080+founders+edition";
-    private final String alternateTestProduct = "ASUS/TUF-Gaming-GeForce-RTX-3080-V2-LHR-grafische-kaart/html/product/1773498";
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	serviceCol.setCellValueFactory(new PropertyValueFactory<>("serviceName"));
-    	conditionCol.setCellValueFactory(new PropertyValueFactory<>("condition"));
-    	statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-    	latencyCol.setCellValueFactory(new PropertyValueFactory<>("latency"));
-    	delayCol.setCellValueFactory(new PropertyValueFactory<>("delay"));
-    	otherCol.setCellValueFactory(new PropertyValueFactory<>("other"));
-    	tableView.setItems(serviceManager.getServices());
-    	
-    	
-    }    
+	@FXML
+	private TableColumn<Data, String> conditionCol;
 
-    @FXML
-    void aboutButton(ActionEvent event) {
+	@FXML
+	private TableColumn<Data, Integer> statusCol;
 
-    }
+	@FXML
+	private TableColumn<Data, Long> latencyCol;
 
-    @FXML
-    void closeWindowAndExit(ActionEvent event) {
-    	hasSystemExit = true;
-    	viewFactory.closeStage(stageKey);
-    	System.exit(0);
+	@FXML
+	private TableColumn<Data, Integer> delayCol;
 
-    }
+	@FXML
+	private TableColumn<Data, String> otherCol;
 
-    @FXML
-    void closeWindowRunBackground(ActionEvent event) {
-    	hasSystemExit = false;
-    	viewFactory.closeStage(stageKey);
+	@FXML
+	private TableView<Data> tableView;
 
-    }
+	private ServiceManager serviceManager;
+	private boolean hasSystemExit;
 
-    @FXML
-    
-    void newJob(ActionEvent event) {
+	public MainWindowController(ServiceManager serviceManager, ViewFactory viewFactory,
+			DataTargetFactory dataTargetFactory, String FXMLName) {
+		super(serviceManager, viewFactory, dataTargetFactory, FXMLName);
+		this.serviceManager = serviceManager;
+		this.dataTargetFactory = dataTargetFactory;
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		hasSystemExit = true;
+		serviceCol.setCellValueFactory(new PropertyValueFactory<>("serviceName"));
+		conditionCol.setCellValueFactory(new PropertyValueFactory<>("condition"));
+		statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+		latencyCol.setCellValueFactory(new PropertyValueFactory<>("latency"));
+		delayCol.setCellValueFactory(new PropertyValueFactory<>("delay"));
+		otherCol.setCellValueFactory(new PropertyValueFactory<>("other"));
+		tableView.setItems(serviceManager.getObservableList());
+
+	}
+
+	void toggleSystemExit() {
+		hasSystemExit = !hasSystemExit;
+	}
+
+	public boolean getHasSystemExit() {
+		return hasSystemExit;
+	}
+
+	@FXML
+	void aboutButton(ActionEvent event) {
+
+	}
+
+	@FXML
+	void closeWindowAndExit(ActionEvent event) {
+		hasSystemExit = true;
+		viewFactory.closeStage(stageKey);
+		System.exit(0);
+
+	}
+
+	@FXML
+	void closeWindowRunBackground(ActionEvent event) {
+		hasSystemExit = false;
+		viewFactory.closeStage(stageKey);
+	}
+
+	@FXML
+	void newJob(ActionEvent event) {
 		viewFactory.showSetupWindow();
-    	// Test config
-//    	dataTargetFactory.createNewService(new ServiceConfig(
-//    			Profile.JSONPLACEHOLDER,		 	// target profile
-//    			"TestService",				// service name
-//    			"",		// target product (after domain)
-//    			6, 							// request interval in seconds
-//    			4000, 						// connection timeout
-//    			0, 							// price threshold
-//    			"username", 				// account username
-//    			"password"));				// account password
+	}
 
-    }
-    
+	@FXML
+	void selectItemContext(ContextMenuEvent event) {
 
-    @FXML
-    void selectItemContext(ContextMenuEvent event) {
+	}
 
-    }
+	@FXML
+	void selectItemFocus(MouseEvent event) {
 
-    @FXML
-    void selectItemFocus(MouseEvent event) {
-
-    }
-}    
+	}
+}

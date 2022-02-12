@@ -14,9 +14,9 @@ import javafx.scene.control.TreeItem;
 
 public abstract class Data {
 	protected ServiceConfig config;
+	@SuppressWarnings("unused")
 	private ServiceManager serviceManager;
 	protected RESTServiceClient restClient;
-
 
 	// data
 	private StringProperty serviceName = new SimpleStringProperty();
@@ -25,10 +25,11 @@ public abstract class Data {
 	private LongProperty latency = new SimpleLongProperty();
 	private IntegerProperty delay = new SimpleIntegerProperty();
 	private StringProperty other = new SimpleStringProperty();
-	
+
 	@SuppressWarnings("unused")
-	private Data(){};
-	
+	private Data() {
+	};
+
 	public Data(ServiceConfig config, ServiceManager serviceManager) {
 		this.serviceManager = serviceManager;
 		this.config = config;
@@ -41,28 +42,27 @@ public abstract class Data {
 		restClient = new RESTServiceClient(config, this);
 		serviceManager.addService(this.serviceName.toString(), this);
 	}
-	
 
 	public void setStatus(Integer status) {
 		this.status.set(status);
 	}
-	
+
 	public void setCondition(String condition) {
 		this.condition.set(condition);
 	}
-	
+
 	public void setLatency(Long latency) {
 		this.latency.set(latency);
 	}
-	
+
 	public void setDelay(Integer delay) {
 		this.delay.set(delay);
 	}
-	
+
 	public void setOther(String other) {
 		this.other.set(other);
 	}
-	
+
 	public StringProperty serviceNameProperty() {
 		return serviceName;
 	}
@@ -88,14 +88,5 @@ public abstract class Data {
 	}
 
 	public abstract void handleData(Document result);
-	
-	
-	
-	
-	
-	
-	
-
-
 
 }
