@@ -7,7 +7,7 @@ Watchdog is an application in which the user can setup an automated buying proce
 
 ## Goals
 - runs on win/lin/mac
-- easy scalable
+- easily add scraping profiles
 
 ## Features
 - create multiple watch jobs
