@@ -6,8 +6,9 @@
 Watchdog is an application in which the user can setup an automated buying process for populair/out of stock online shopping item's. At the moment the focus lies within the GPU market, giving normal buyers a change against large quantity buying-bots.
 
 ## Goals
-- runs on win/lin/mac
 - easily add scraping profiles
+- runs on win/lin/mac
+
 
 ## Features
 - create multiple watch jobs
