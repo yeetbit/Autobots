@@ -1,4 +1,4 @@
-# Watchdog (old project name autobots)
+# Watchdog
 - JavaFX multi-platform Desktop application
 - status: under development
 
