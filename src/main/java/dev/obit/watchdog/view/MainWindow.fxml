@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="newJobMenuButton" mnemonicParsing="false" onAction="#newJob" text="New Job" />
+                  <MenuItem fx:id="closewindow" mnemonicParsing="false" onAction="#closeWindowRunBackground" text="Close(run in Background)" />
+              <MenuItem fx:id="exitMenuButton" mnemonicParsing="false" onAction="#closeWindowAndExit" text="Exit" />
+            </items>
+          </Menu>
+          <Menu fx:id="edit" mnemonicParsing="false" text="Edit" />
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="aboutMenuButton" mnemonicParsing="false" onAction="#aboutButton" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TableView fx:id="tableView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+        <columns>
+          <TableColumn fx:id="serviceCol" prefWidth="96.0" text="Service" />
+          <TableColumn fx:id="conditionCol" prefWidth="200.0" text="Condititon" />
+            <TableColumn fx:id="statusCol" prefWidth="55.0" resizable="false" text="Status" />
+            <TableColumn fx:id="latencyCol" prefWidth="55.0" resizable="false" text="Lat." />
+            <TableColumn fx:id="delayCol" prefWidth="55.0" resizable="false" text="Delay" />
+            <TableColumn fx:id="otherCol" prefWidth="176.0" resizable="false" text="Other" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
