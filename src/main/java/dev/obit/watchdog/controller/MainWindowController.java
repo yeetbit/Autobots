@@ -103,7 +103,7 @@ public class MainWindowController extends BaseController implements Initializabl
 
 	}
 
-	void toggleSystemExit() {
+	private void toggleSystemExit() {
 		hasSystemExit = !hasSystemExit;
 	}
 
@@ -112,12 +112,12 @@ public class MainWindowController extends BaseController implements Initializabl
 	}
 
 	@FXML
-	void aboutButton(ActionEvent event) {
+	public void aboutButton(ActionEvent event) {
 
 	}
 
 	@FXML
-	void closeWindowAndExit(ActionEvent event) {
+	public void closeWindowAndExit(ActionEvent event) {
 		hasSystemExit = true;
 		viewFactory.closeStage(stageKey);
 		System.exit(0);
@@ -125,23 +125,23 @@ public class MainWindowController extends BaseController implements Initializabl
 	}
 
 	@FXML
-	void closeWindowRunBackground(ActionEvent event) {
+	public void closeWindowRunBackground(ActionEvent event) {
 		hasSystemExit = false;
 		viewFactory.closeStage(stageKey);
 	}
 
 	@FXML
-	void newJob(ActionEvent event) {
+	public void newJob(ActionEvent event) {
 		viewFactory.showSetupWindow();
 	}
 
 	@FXML
-	void selectItemContext(ContextMenuEvent event) {
+	public void selectItemContext(ContextMenuEvent event) {
 
 	}
 
 	@FXML
-	void selectItemFocus(MouseEvent event) {
+	public void selectItemFocus(MouseEvent event) {
 
 	}
 }

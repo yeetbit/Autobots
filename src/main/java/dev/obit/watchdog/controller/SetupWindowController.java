@@ -152,12 +152,12 @@ public class SetupWindowController extends BaseController implements Initializab
     }    
     
         @FXML
-    void cancelEntry(ActionEvent event) {
+    public void cancelEntry(ActionEvent event) {
 
     }
 
     @FXML
-    void saveEntry(ActionEvent event) {
+    public void saveEntry(ActionEvent event) {
         dataTargetFactory.createNewService(new ServiceConfig(
                 targetDomainChoiceBox.getValue(),
                 serviceNameField.getText(),

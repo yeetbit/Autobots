@@ -1,9 +1,13 @@
 module dev.obit.watchdog {
     requires javafx.controls;
     requires javafx.fxml;
-	requires org.jsoup;
+    requires javafx.base;
+    requires javafx.graphics;
 	requires org.slf4j;
+	requires org.jsoup;
 
-    opens dev.obit.watchdog.view to javafx.fxml;
-    exports dev.obit.watchdog;
+	opens dev.obit.watchdog to javafx.fxml;
+	exports dev.obit.watchdog;
+    
+
 }
